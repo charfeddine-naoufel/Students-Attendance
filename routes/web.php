@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\EnseignantController;
+use App\Http\Controllers\MatiereController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,9 +23,18 @@ Route::get('/', function () {
 Auth::routes();
 Route::prefix('admin')->middleware(['auth','admin'])->group(function(){
 
-        Route::get('/testadmin',function () { return "hi admin";});
+
+        Route::resource('matieres', MatiereController::class);
+        Route::resource('enseignants', EnseignantController::class);
 
 
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::prefix('prof')->middleware(['auth','prof'])->group(function(){
+
+        // Route::get('/testprof',function () { return "hi prof";});
+        
+
+
+});
 

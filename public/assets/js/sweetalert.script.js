@@ -107,31 +107,34 @@ $(document).ready(function () {
 
     });
 
-    $('#alert-confirm').on('click', function () {
+    $('#alert-confirm').on('click', function (e) {
+        e.preventDefault();
+        var form =  $(this).closest("form");
         swal({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'Êtes vous sûr?',
+            text: "Cet action est irréversible!",
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#0CC27E',
             cancelButtonColor: '#FF586B',
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, cancel!',
+            confirmButtonText: 'Oui, Supprimer!',
+            cancelButtonText: 'Non, Annuler!',
             confirmButtonClass: 'btn btn-success mr-5',
             cancelButtonClass: 'btn btn-danger',
             buttonsStyling: false
         }).then(function () {
+            form.submit();
             swal(
-                'Deleted!',
-                'Your imaginary file has been deleted.',
+                'Supprimée!',
+                'La matière a bien été supprimée.',
                 'success'
             )
         }, function (dismiss) {
             // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
             if (dismiss === 'cancel') {
                 swal(
-                    'Cancelled',
-                    'Your imaginary file is safe :)',
+                    'Annulée',
+                    'La supression est annulée !! :)',
                     'error'
                 )
             }

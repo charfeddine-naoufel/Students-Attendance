@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminMiddleware
+class ProfMiddleware
 {
     /**
      * Handle an incoming request.
@@ -19,9 +19,10 @@ class AdminMiddleware
     {
         if(Auth::check())
         {
-            if (Auth::user()->role == 'admin')
+            if(Auth::user()->role == 'prof')
             {
                 return $next($request);
+
             }
             else {
                 {
@@ -30,10 +31,10 @@ class AdminMiddleware
             }
         }
         else {
-            {  
-                 return redirect('/login')->with('message',"Vous devez vous identifier !!!" );
+            {
+                return redirect('/login')->with('message',"Vous devez vous identifer !!!" );
+
             }
         }
-        
     }
 }
