@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ClasseController;
+use App\Http\Controllers\EleveController;
 use App\Http\Controllers\EnseignantController;
 use App\Http\Controllers\MatiereController;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +28,9 @@ Route::prefix('admin')->middleware(['auth','admin'])->group(function(){
 
         Route::resource('matieres', MatiereController::class);
         Route::resource('enseignants', EnseignantController::class);
+        Route::resource('eleves', EleveController::class);
+        Route::resource('classes', ClasseController::class);
+        
 
 
 });

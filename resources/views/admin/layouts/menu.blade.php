@@ -17,6 +17,13 @@
                         <div class="triangle"></div>
                     </li>
                     <li class="nav-item" >
+                        <a class="nav-item-hold" href="{{route('classes.index')}}">
+                            <i class="nav-icon i-Library"></i>
+                            <span class="nav-text">Classe</span>
+                        </a>
+                        <div class="triangle"></div>
+                    </li>
+                    <li class="nav-item" >
                         <a class="nav-item-hold" href="{{route('enseignants.index')}}">
                             <i class="nav-icon i-Library"></i>
                             <span class="nav-text">Enseignant</span>
