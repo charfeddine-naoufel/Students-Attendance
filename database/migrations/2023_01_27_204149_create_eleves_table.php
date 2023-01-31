@@ -16,7 +16,7 @@ class CreateElevesTable extends Migration
         Schema::create('eleves', function (Blueprint $table) {
             $table->id();
             $table->string('CIN')->nullable();
-            $table->string('IdentifiantUnique');
+            $table->string('IdentifiantUnique')->unique();
             $table->string('NomPrenom');
             $table->date('DateNaissance')->nullable();
             $table->string('Adresse') ->default('El-Hamma');

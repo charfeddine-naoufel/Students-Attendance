@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classe;
 use App\Models\Enseignant;
 use App\Models\Matiere;
 use Illuminate\Http\Request;
@@ -18,9 +19,10 @@ class EnseignantController extends Controller
         // get all the enseignants
         $enseignants = Enseignant::latest()->paginate(20);
         $matieres = Matiere::all();
-
+        $classes = Classe::all();
+        
     
-        return view('admin.prof.index',['enseignants'=>$enseignants,'matieres'=>$matieres])->with('i', (request()->input('page', 1) - 1) * 20);
+        return view('admin.prof.index',['enseignants'=>$enseignants,'matieres'=>$matieres ,'classes'=>$classes])->with('i', (request()->input('page', 1) - 1) * 20);
     }
 
     /**
@@ -48,9 +50,19 @@ class EnseignantController extends Controller
             'Matiere_id' => 'required',
             'Grade' => 'nullable',
             'Type' => 'nullable',
+            'classes' => 'nullable',
         ]);
-    // dd($request);
-        Enseignant::create($request->all());
+        $newRequest = \Illuminate\Http\Request::capture();
+        $newRequest->replace($request->except(['classes']));
+        $prof = Enseignant::create($newRequest->all());
+        //  dd($request);
+    // $regions  = [1, 2, 3];
+    $classes = $request->classes;
+// dd($classes);
+      
+        $prof->classes()->attach($classes);
+        
+        
      
         return redirect()->route('enseignants.index')
                         ->with('success','Nouveau Enseignant crée avec succés.');

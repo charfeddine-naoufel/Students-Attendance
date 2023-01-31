@@ -238,6 +238,16 @@
                                 <label for="Type" class="col-form-label">Type:</label>
                                 <input type="text" class="form-control"  name="Type">
                             </div>
+                            <div class="form-group">
+                                <label for="classe" class="col-form-label">Classe:</label>
+                                <select class="classe form-control" name="classes[]" multiple="multiple" style="width: 100%">
+                                @foreach($classes as $classe)
+                            <option value="{{$classe->IdClasse}}" >{{$classe->libeclassar}}</option>
+                            @endforeach    
+                                
+                                      
+</select>
+                            </div>
 
 
                         </div>
@@ -317,8 +327,10 @@
 </div>
 @endsection
 @section('scripts')
+<script src="{{asset('assets/js/select2.min.js')}} "></script>
 <script>
     $(document).ready(function() {
+        $('.classe').select2();
         $('.alert-confirm').on('click', function (e) {
         e.preventDefault();
         var form =  $(this).closest("form");

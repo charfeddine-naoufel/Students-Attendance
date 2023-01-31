@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Classe;
 use App\Models\Eleve;
+use App\Models\Enseignant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClasseController extends Controller
 {
@@ -64,9 +66,19 @@ class ClasseController extends Controller
     public function show($IdClasse)
     {
         // dd($IdClasse);
-        $classe=Eleve::where('Classe_id',$IdClasse)->get();
+        $eleves=Eleve::where('Classe_id',$IdClasse)->get();
+        $classe=Classe::where('IdClasse',$IdClasse)->first();
+        $profs = DB::table('enseignants')->select('enseignants.*')
+        ->join('classe_enseignant', 'enseignants.id', '=', 'classe_enseignant.enseignant_id')
+        ->where('classe_enseignant.classe_IdClasse', $IdClasse)->get();
+        
+        // $profs = $classe->enseignants()->get();
+        // dd($profs);
+        // dd($classe->eleves);
         // $classe=Classe::where('IdClasse',$IdClasse)->eleves;
-        return view('admin.classe.show',compact('classe'));
+        $matieres= DB::table('matieres')->select(['id','NomMatiere'])->get()->toArray();
+        // dd($matieres);
+        return view('admin.classe.show',compact('eleves','classe','profs','matieres'));
     }
 
     /**

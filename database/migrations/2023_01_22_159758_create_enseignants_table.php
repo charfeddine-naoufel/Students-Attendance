@@ -15,7 +15,7 @@ class CreateEnseignantsTable extends Migration
     {
         Schema::create('enseignants', function (Blueprint $table) {
             $table->id();
-            $table->string('CodeEnseignant');
+            $table->string('CodeEnseignant')->unique();
             $table->string('NomEnseignant');
             $table->foreignId('Matiere_id')->constrained('matieres')->cascadeOnDelete()->cascadeOnUpdate();
             $table->integer('Grade')->default(0);

@@ -21,6 +21,6 @@ class Eleve extends Model
     ];
     public function classe()
     {
-        return $this->belongsTo(Classe::class);
+        return $this->belongsTo(Classe::class,'Classe_id');
     }
 }

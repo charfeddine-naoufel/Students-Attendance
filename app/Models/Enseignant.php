@@ -16,4 +16,8 @@ class Enseignant extends Model
         'Type',
         
     ];
+    public function classes()
+    {
+        return $this->belongsToMany(Classe::class ,'classe_enseignant', 'enseignant_id', 'classe_IdClasse');
+    }
 }

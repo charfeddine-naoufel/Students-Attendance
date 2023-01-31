@@ -94,24 +94,25 @@
         </div>
 
         <div class="separator-breadcrumb border-top"></div>
+        <div class="col-md-12">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                        <h4 class="card-title mb-3 heading text-warning text-center"> Classe: {{$classe->libeclassar }}</h4>
+
+                        </div>
+                    </div>
+                </div>
 
         <div class="row mb-4">
 
-            <div class="col-md-12 mb-3">
-                <div class="card text-left">
 
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
+        <div class="col-md-6 mb-3">
+    <div class="card text-left">
 
-                            <h4 class="card-title mb-3"> Classes</h4>
-                           
-                        </div>
-
-                        <p>
-                            Vous pouvez créer, mettre à jour ou supprimer une classe.
-
-                        </p>
-                        <div class="table-responsive">
+        <div class="card-body">
+            <h4 class="card-title mb-3"> Liste des élèves</h4>
+            
+            <div class="table-responsive">
                             <table class="table table-sm table-striped">
                                 <thead class="thead-dark">
 
@@ -126,12 +127,12 @@
                                 </thead>
                                 <tbody>
                                     
-                                    @foreach($classe as $cl)
+                                    @foreach($eleves as $el)
                                     <tr>
                                         <th scope="row">{{$loop->iteration }}</th>
-                                        <td><strong>{{$cl->IdentifiantUnique}} </strong></td>
-                                        <td><strong>{{$cl->NomPrenom}}</strong></td>
-                                        <td><strong>{{$cl->DateNaissance}}</strong></td>
+                                        <td><strong>{{$el->IdentifiantUnique}} </strong></td>
+                                        <td><strong>{{$el->NomPrenom}}</strong></td>
+                                        <td><strong>{{$el->DateNaissance}}</strong></td>
 
 
                                         
@@ -144,11 +145,57 @@
                         </div>
 
 
-                    </div>
-                    
-                </div>
-            </div>
         </div>
+    </div>
+</div>
+<!-- end of col-->
+
+<div class="col-md-6 mb-3">
+    <div class="card text-left">
+
+        <div class="card-body">
+            <h4 class="card-title mb-3"> Liste des enseignants</h4>
+            
+            <div class="table-responsive">
+                            <table class="table table-sm table-striped">
+                                <thead class="thead-primary text-white bg-success">
+
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col"> Code Enseignant </th>
+                                        <th scope="col">Nom et Prénom</th>
+                                        <th scope="col">Matière</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    @foreach($profs as $prof)
+                                    <tr>
+                                        <th scope="row">{{$loop->iteration }}</th>
+                                        <td><strong>{{$prof->CodeEnseignant}} </strong></td>
+                                        <td><strong>{{$prof->NomEnseignant}}</strong></td>
+                                        <td><strong>{{$matieres[$prof->Matiere_id - 1]->NomMatiere}}</strong></td>
+
+
+                                        
+                                    </tr>
+                                    @endforeach
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- end of col-->
+
+</div>
+        
 
 
        
