@@ -4,6 +4,7 @@ use App\Http\Controllers\ClasseController;
 use App\Http\Controllers\EleveController;
 use App\Http\Controllers\EnseignantController;
 use App\Http\Controllers\MatiereController;
+use App\Http\Controllers\SeanceController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -32,13 +33,16 @@ Route::prefix('admin')->middleware(['auth','admin'])->group(function(){
         Route::resource('classes', ClasseController::class);
         
 
-
-});
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::prefix('prof')->middleware(['auth','prof'])->group(function(){
-
-        // Route::get('/testprof',function () { return "hi prof";});
+        Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.home');
         
+    });
+
+Route::prefix('prof')->middleware(['auth','prof'])->group(function(){
+        
+        Route::get('/home', [App\Http\Controllers\HomeController::class, 'profhome'])->name('prof.home');
+        Route::get('seances/create/{id}',[SeanceController::class,'absence'])->name('seance.absence');
+        Route::post('seances/store_absence',[SeanceController::class,'store_absence'])->name('seance.store_absence');
+        Route::get('/mesCLasses', [EnseignantController::class, 'mesclasses'])->name('prof.mesclasses');
 
 
 });

@@ -6,6 +6,7 @@ use App\Models\Classe;
 use App\Models\Enseignant;
 use App\Models\Matiere;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EnseignantController extends Controller
 {
@@ -24,6 +25,23 @@ class EnseignantController extends Controller
     
         return view('admin.prof.index',['enseignants'=>$enseignants,'matieres'=>$matieres ,'classes'=>$classes])->with('i', (request()->input('page', 1) - 1) * 20);
     }
+
+    //mes classes
+    public function mesclasses()
+    {
+        $userId=Auth::user()->id;  
+        $prof=Enseignant::where('User_id',$userId)->first();
+       $classes=$prof->classes;
+       $eleves=[];
+       foreach ($classes as $classe) {
+        $eleves[$classe->IdClasse]=$classe->eleves;
+        }     
+        
+    //    dd($eleves);
+            return view('prof.classe.index',compact('eleves'));
+        
+    }   
+    
 
     /**
      * Show the form for creating a new resource.

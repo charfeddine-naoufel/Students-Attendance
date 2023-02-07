@@ -52,6 +52,14 @@
 
     <script src="{{asset('assets/js/modal.script.js')}}"></script>
     @yield('scripts')
+    <script>
+
+$(document).ready(function(){
+  $('ul li ').click(function(){
+    $(this).addClass('active').siblings().removeClass('active');
+});
+});
+    </script>
 </body>
 
 </html>

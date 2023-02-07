@@ -25,7 +25,7 @@ class AdminMiddleware
             }
             else {
                 {
-                    return redirect('/home')->with('message',"Vous n'êtes pas autorisés à accéder !!!" );
+                    return redirect('/prof/home')->with('message',"Vous n'êtes pas autorisés à accéder !!!" );
                 }
             }
         }

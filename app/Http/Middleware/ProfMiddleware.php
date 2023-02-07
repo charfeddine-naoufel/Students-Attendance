@@ -25,9 +25,9 @@ class ProfMiddleware
 
             }
             else {
-                {
-                    return redirect('/home')->with('message',"Vous n'êtes pas autorisés à accéder !!!" );
-                }
+                
+                    return redirect('/admin/home')->with('message',"Vous n'êtes pas autorisés à accéder !!!" );
+                
             }
         }
         else {

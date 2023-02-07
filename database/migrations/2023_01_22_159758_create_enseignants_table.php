@@ -20,6 +20,7 @@ class CreateEnseignantsTable extends Migration
             $table->foreignId('Matiere_id')->constrained('matieres')->cascadeOnDelete()->cascadeOnUpdate();
             $table->integer('Grade')->default(0);
             $table->integer('Type')->default(0);
+            $table->foreignId('User_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
 
             $table->timestamps();
         });

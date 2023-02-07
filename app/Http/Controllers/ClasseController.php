@@ -18,7 +18,7 @@ class ClasseController extends Controller
     public function index()
     {
         // get all the classes
-        $classes = Classe::latest()->paginate(20);
+        $classes = Classe::orderBy('IdClasse')->paginate(20);
 
     
         return view('admin.classe.index',compact('classes'))->with('i', (request()->input('page', 1) - 1) * 20);

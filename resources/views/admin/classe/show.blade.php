@@ -96,8 +96,8 @@
         <div class="separator-breadcrumb border-top"></div>
         <div class="col-md-12">
                     <div class="card mb-3">
-                        <div class="card-body">
-                        <h4 class="card-title mb-3 heading text-warning text-center"> Classe: {{$classe->libeclassar }}</h4>
+                        <div class="card-body green-100">
+                        <h3 class="card-title mb-3 heading text-primary text-center"> Classe: {{$classe->libeclassar }}</h3>
 
                         </div>
                     </div>
@@ -114,7 +114,7 @@
             
             <div class="table-responsive">
                             <table class="table table-sm table-striped">
-                                <thead class="thead-dark">
+                                <thead class="thead-primary text-white teal-700 ">
 
                                     <tr>
                                         <th scope="col">#</th>
@@ -158,7 +158,7 @@
             
             <div class="table-responsive">
                             <table class="table table-sm table-striped">
-                                <thead class="thead-primary text-white bg-success">
+                                <thead class="thead-primary text-white teal-700">
 
                                     <tr>
                                         <th scope="col">#</th>

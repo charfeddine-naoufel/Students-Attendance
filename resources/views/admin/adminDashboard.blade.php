@@ -4,7 +4,7 @@
 <div class="app-admin-wrap layout-sidebar-large clearfix">
         <div class="main-header">
             <div class="logo">
-                <img src="./assets/images/logo.png" alt="">
+                <img src="{{asset('assets/images/logo.png')}}" alt="">
             </div>
 
             <div class="menu-toggle">
@@ -56,7 +56,7 @@
                 <!-- User avatar dropdown -->
                 <div class="dropdown">
                     <div class="user col align-self-end">
-                        <img src="./assets/images/faces/1.jpg" id="userDropdown" alt="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="{{asset('assets/images/faces/1.jpg')}}" id="userDropdown" alt="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                             <div class="dropdown-header">

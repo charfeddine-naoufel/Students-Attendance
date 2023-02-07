@@ -16217,7 +16217,8 @@ a.typo_link.text-gray-900:after {
   width: 100%; }
 
 .layout-sidebar-compact.sidenav-open .main-content-wrap {
-  width: calc( 100% - 76px - 220px); }
+  width: calc(
+ 100% - 76px - 220px); }
 
 .layout-sidebar-compact.sidenav-open .sidebar-left {
   left: 0; }

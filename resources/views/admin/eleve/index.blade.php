@@ -103,7 +103,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
 
-                            <h4 class="card-title mb-3"> Enseignants</h4>
+                            <h4 class="card-title mb-3"> Elèves</h4>
                             <button type="button" class="btn btn-primary btn-icon m-1" data-toggle="modal" data-target="#verifyModalContent">
                                 <span class="ul-btn__icon"><i class="i-Add"></i></span>
                                 <span class="ul-btn__text">Ajouter</span>
@@ -111,67 +111,67 @@
                         </div>
 
                         <p>
-                            Vous pouvez créer, mettre à jour ou supprimer un enseignant.
+                            Vous pouvez créer, mettre à jour ou supprimer un élève.
 
                         </p>
                         <div class="table-responsive">
-                            <table class="table ">
+                            <table class="table table-sm table-striped">
                                 <thead class="thead-dark">
 
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Code Enseignant</th>
-                                        <th scope="col">Nom Enseignant</th>
-                                        <th scope="col">Matière</th>
-                                        <th scope="col">Grade</th>
-                                        <th scope="col">Type</th>
+                                        <th scope="col">Identifiant</th>
+                                        <th scope="col">Nom et Prenom</th>
+                                        <th scope="col">Nom Père</th>
+                                        <th scope="col">Tél Père</th>
+                                        <th scope="col">Classe</th>
 
 
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($enseignants as $enseignant)
+                                    @foreach($eleves as $eleve)
                                     <tr>
                                         <th scope="row">{{$loop->iteration }}</th>
-                                        <td><strong>{{$enseignant->CodeEnseignant}} </strong></td>
+                                        <td><strong>{{$eleve->IdentifiantUnique}} </strong></td>
                                         <td>
                                             <strong>
 
-                                                {{$enseignant->NomEnseignant}}
+                                                {{$eleve->NomPrenom}}
                                             </strong>
 
                                         </td>
                                         <td>
                                             <strong>
 
-                                                {{$enseignant->Matiere_id}}
+                                                {{$eleve->NomPere}}
                                             </strong>
 
                                         </td>
                                         <td>
                                             <strong>
 
-                                                {{$enseignant->Grade}}
+                                                {{$eleve->GSMPere}}
                                             </strong>
 
                                         </td>
                                         <td>
                                             <strong>
 
-                                                {{$enseignant->Type}}
+                                                {{$eleve->libeclassar}}
                                             </strong>
 
                                         </td>
 
 
                                         <td class="d-flex">
-                                            <button class="btn text-success bg-transparent btn-icon  mr-2 editbtn" data-id="{{$enseignant->id}}"  data-toggle="modal" data-target="#editModalContent" ><i class="nav-icon i-Pen-5 font-weight-bold"></i></button>
+                                            <button class="btn text-success bg-transparent btn-icon  mr-2 editbtn" data-id="{{$eleve->id}}"  data-toggle="modal" data-target="#editModalContent" ><i class="nav-icon i-Pen-5 font-weight-bold"></i></button>
 
                                             <!-- <a href="#" class="text-success mr-2">
                                                     <i class="nav-icon i-Pen-2 font-weight-bold"></i>
                                                 </a> -->
-                                            <form action="{{ route('enseignants.destroy', $enseignant->id)}}" method="post" class="inline-block">
+                                            <form action="{{ route('eleves.destroy', $eleve->id)}}" method="post" class="inline-block">
                                                 @csrf
                                                 @method('DELETE')
                                                 <!-- <a  class="text-danger mr-2" type="submit">
@@ -192,7 +192,7 @@
 
 
                     </div>
-                    {!! $enseignants->links() !!}
+                    {!! $eleves->links() !!}
                 </div>
             </div>
         </div>
@@ -203,28 +203,28 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="verifyModalContent_title">Nouveau Enseignant</h5>
+                        <h5 class="modal-title" id="verifyModalContent_title">Nouveau eleve</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form method="post" action="{{route('enseignants.store') }}">
+                    <form method="post" action="{{route('eleves.store') }}">
                         @csrf
                         <div class="modal-body">
 
                             <div class="form-group">
-                                <label for="recipient-name-1" class="col-form-label"> Code Enseignant:</label>
-                                <input type="text" class="form-control"  name="CodeEnseignant">
+                                <label for="recipient-name-1" class="col-form-label"> Code eleve:</label>
+                                <input type="text" class="form-control"  name="Codeeleve">
                             </div>
                             <div class="form-group">
-                                <label for="NomEnseignant" class="col-form-label">Nom Enseignant:</label>
-                                <input type="text" class="form-control"  name="NomEnseignant">
+                                <label for="Nomeleve" class="col-form-label">Nom eleve:</label>
+                                <input type="text" class="form-control"  name="Nomeleve">
                             </div>
                             <div class="form-group">
                             <label for="exampleFormControlSelect1">Code Matiere</label>
                             <select class="form-control" id="Matiere_id" name="Matiere_id">
                             <option value="0" >Choisir ...</option>
-                              @foreach($matieres as $matiere)
+                              @foreach($eleves as $matiere)
                             <option value="{{$matiere->id}}" >{{$matiere->NomMatiere}}</option>
                             @endforeach
                             
@@ -254,7 +254,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editModalContent_title">Modifier Enseignant</h5>
+                        <h5 class="modal-title" id="editModalContent_title">Modifier eleve</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -265,13 +265,13 @@
                         <div class="modal-body">
 
                             <div class="form-group">
-                                <label for="recipient-name-1" class="col-form-label"> Code Enseignant:</label>
-                                <input type="text" class="form-control" id="CodeEnseignant" name="CodeEnseignant">
-                                <input type="hidden" class="form-control" id="IdEnseignant" name="IdEnseignant">
+                                <label for="recipient-name-1" class="col-form-label"> Code eleve:</label>
+                                <input type="text" class="form-control" id="Codeeleve" name="Codeeleve">
+                                <input type="hidden" class="form-control" id="Ideleve" name="Ideleve">
                             </div>
                             <div class="form-group">
-                                <label for="recipient-name-2" class="col-form-label">Nom Enseignant:</label>
-                                <input type="text" class="form-control" id="NomEnseignant" name="NomEnseignant">
+                                <label for="recipient-name-2" class="col-form-label">Nom eleve:</label>
+                                <input type="text" class="form-control" id="Nomeleve" name="Nomeleve">
                             </div>
                             <div class="form-group">
                                 <label for="Grade" class="col-form-label">Grade:</label>
@@ -338,7 +338,7 @@
             form.submit();
             swal(
                 'Supprimée!',
-                'L enseignant a bien été supprimée.',
+                'L eleve a bien été supprimée.',
                 'success'
             )
         }, function (dismiss) {

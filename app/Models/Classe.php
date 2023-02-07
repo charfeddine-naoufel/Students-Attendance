@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Classe extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'IdClasse';
     protected $fillable = [
         'IdClasse',
         'IDNbrClasse',
@@ -17,10 +18,10 @@ class Classe extends Model
     ];
     public function eleves()
     {
-        return $this->hasMany(Eleve::class);
+        return $this->hasMany(Eleve::class,'Classe_id','IdClasse');
     }
     public function enseignants()
 {
-    return $this->belongsToMany(Enseignant::class ,'classe_enseignant', 'enseignant_id', 'classe_IdClasse');
+    return $this->belongsToMany(Enseignant::class ,'classe_enseignant');
 }
 }

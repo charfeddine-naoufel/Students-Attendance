@@ -140,20 +140,37 @@
 
 
                                         <td class="d-flex">
-                                            <button class="btn text-success bg-transparent btn-icon  mr-2 editbtn" data-id="{{$classe->IdClasse}}"  data-toggle="modal" data-target="#editModalContent" ><i class="nav-icon i-Pen-5 font-weight-bold"></i></button>
+                                        <button type="button" class="btn bg-transparent _r_btn border-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                                    <span class="_dot _r_block-dot bg-dark"></span>
+                                                                                                    <span class="_dot _r_block-dot bg-dark"></span>
+                                                                                                    <span class="_dot _r_block-dot bg-dark"></span>
+                                                                                                </button>
+                                                                                                <div class="dropdown-menu" x-placement="bottom-start">
+                                                                                                    <a class="dropdown-item editbtn" data-id="{{$classe->IdClasse}}"  data-toggle="modal" data-target="#editModalContent" href="#"><i class="nav-icon i-Pen-2 text-success font-weight-bold mr-2"></i>Edit Contact</a>
+                                                                                                    <!-- <a class="dropdown-item" href="#"><i class="nav-icon i-Close-Window text-danger font-weight-bold mr-2"></i>Delete Contact</a> -->
+                                                                                                    <form action="{{ route('classes.destroy', $classe->IdClasse)}}" method="post" class="inline-block">
+                                                                                                        @csrf
+                                                                                                        @method('DELETE')
+                                                                                                        <!-- <a  class="text-danger mr-2" type="submit">
+                                                                                                            <i class="nav-icon i-Close-Window font-weight-bold"></i>
+                                                                                                        </a> -->
+                                                                                                        <button class="   mr-2 alert-confirm dropdown-item"  ><i class="nav-icon i-Close-Window text-danger font-weight-bold mr-2"></i>Delete Contact</button>
+
+                                                                                                    </form>
+                                                                                                </div> 
+
+                                            <!-- <button class="btn text-success bg-transparent btn-icon  mr-2 editbtn" data-id="{{$classe->IdClasse}}"  data-toggle="modal" data-target="#editModalContent" ><i class="nav-icon i-Pen-5 font-weight-bold"></i></button> -->
 
                                             <!-- <a href="#" class="text-success mr-2">
                                                     <i class="nav-icon i-Pen-2 font-weight-bold"></i>
                                                 </a> -->
-                                            <form action="{{ route('classes.destroy', $classe->IdClasse)}}" method="post" class="inline-block">
+                                            <!-- <form action="{{ route('classes.destroy', $classe->IdClasse)}}" method="post" class="inline-block">
                                                 @csrf
                                                 @method('DELETE')
-                                                <!-- <a  class="text-danger mr-2" type="submit">
-                                                    <i class="nav-icon i-Close-Window font-weight-bold"></i>
-                                                </a> -->
+                                                
                                                 <button class="btn text-danger  btn-icon  mr-2 alert-confirm"   ><i class="nav-icon i-Close-Window font-weight-bold"></i></i></button>
 
-                                            </form>
+                                            </form> -->
 
                                         </td>
                                     </tr>
