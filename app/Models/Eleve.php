@@ -23,4 +23,5 @@ class Eleve extends Model
     {
         return $this->belongsTo(Classe::class,'Classe_id');
     }
+    
 }

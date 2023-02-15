@@ -20,6 +20,10 @@ class Classe extends Model
     {
         return $this->hasMany(Eleve::class,'Classe_id','IdClasse');
     }
+    public function seances()
+    {
+        return $this->hasMany(Seance::class,'Classe_id','IdClasse');
+    }
     public function enseignants()
 {
     return $this->belongsToMany(Enseignant::class ,'classe_enseignant');

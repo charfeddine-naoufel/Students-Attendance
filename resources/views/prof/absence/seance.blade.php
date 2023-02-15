@@ -53,129 +53,129 @@
 
     <div class="separator-breadcrumb border-top"></div>
     <form method="post" action="{{route('seance.store_absence') }}">
-                        @csrf
-    <div class="row mb-5">
-        <div class="col-lg-4 mb-4">
-            <div class="card">
-                <div class="card-body ">
-                    <div class="card-title mb-0">Liste des élèves <button type="button" class="btn btn-dark btn-sm m-1 clear">Clear</button></div>
+        @csrf
+        <div class="row mb-5">
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                    <div class="card-body ">
+                        <div class="card-title mb-0">Liste des élèves <button type="button" class="btn btn-dark btn-sm m-1 clear">Clear</button></div>
 
-                    <div class="table-responsive ">
-                        <table class="table table-sm table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col" style="width:5%">N°</th>
-                                    <th scope="col" style="width:55%">Nom</th>
-                                    <th scope="col" style="width:20%">Abs</th>
-                                    <th scope="col" style="width:20%">Ex</th>
+                        <div class="table-responsive ">
+                            <table class="table table-sm table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="width:5%">N°</th>
+                                        <th scope="col" style="width:55%">Nom</th>
+                                        <th scope="col" style="width:20%">Abs</th>
+                                        <th scope="col" style="width:20%">Ex</th>
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($classe->eleves as $el)
-                                <tr>
-                                    <th scope="row">{{$loop->iteration}}</th>
-                                    <td style="text-align:center;font-family: 'Noto Naskh Arabic', serif;font-size: 15px;">{{$el->NomPrenom}}</td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="checkbox" name="absents[]" value="{{$el->id}}" type="checkbox" id="flexCheckDefault">
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($classe->eleves as $el)
+                                    <tr>
+                                        <th scope="row">{{$loop->iteration}}</th>
+                                        <td style="text-align:center;font-family: 'Noto Naskh Arabic', serif;font-size: 15px;">{{$el->NomPrenom}}</td>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="checkbox" name="absents[]" value="{{$el->id}}" type="checkbox" id="flexCheckDefault">
 
-                                        </div>
-                                    </td>
+                                            </div>
+                                        </td>
 
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="checkbox" name="exclus[]" value="{{$el->id}}" type="checkbox" id="flexCheckDefault">
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="checkbox" name="exclus[]" value="{{$el->id}}" type="checkbox" id="flexCheckDefault">
 
-                                        </div>
-                                    </td>
-                                </tr>
-                                @endforeach
-
-
-                            </tbody>
-                        </table>
-                    </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endforeach
 
 
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-8">
-            <div class="card">
-                <div class="card-body">
-                    <form action="">
-                        <div class="card-body">
-                            <div class="card-title">Séance Info:</div>
-
-                            <div class="form-row">
-                                <div class="form-group col-md-4">
-                                    <label for="inputtext14" class="ul-form__label">Date:</label>
-                                    <input type="date" class="form-control" id="date" name="date" value="{{ date('Y-m-d') }}">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="inputEmail15" class="ul-form__label">Début:</label>
-                                    <input type="time" class="form-control" id="debut" name="debut">
-
-                                </div>
-
-                                <div class="form-group col-md-4">
-                                    <label for="inputEmail16" class="ul-form__label">Fin:</label>
-                                    <input type="time" class="form-control" id="fin" name="fin">
-
-                                </div>
-                            </div>
-                            <div class="custom-separator"></div>
-                            <div class="form-row">
-                                <div class="form-group col-md-4">
-                                    <label for="inputtext14" class="ul-form__label">Enseignant:</label>
-                                    <input type="text" class="form-control" id="inputtext14" readonly value="{{ Auth::user()->name}}">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="inputtext14" class="ul-form__label">Classe:</label>
-                                    <input type="text" class="form-control" id="inputtext15" readonly value="{{$classe->libeclassar}}">
-                                    <input type="hidden" class="form-control" id="inputtext16" name="classe_IdClasse" value="{{$classe->IdClasse}}">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="exampleFormControlSelect1" class="ul-form__label">Matiere</label>
-                                    <select class="form-control" id="Matiere_id" name="matiere_id">
-                                        <option value="0">Choisir ...</option>
-                                        @foreach($matieres as $matiere)
-                                        <option value="{{$matiere->id}}">{{$matiere->NomMatiere}}</option>
-                                        @endforeach
-
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <label for="exampleFormControlTextarea1">Commentaires</label>
-                                    <textarea class="form-control w-100" id="exampleFormControlTextarea1" rows="3" name="commentaires"></textarea>
-                                </div>
-
-                            </div>
+                                </tbody>
+                            </table>
                         </div>
-                    </form>
-                </div>
-                <div class="card-footer">
-                    <div class="row text-right">
-                        <div class="col-lg-12 ">
-                            <button type="submit" class="btn btn-success m-1">
-                                Enregistrer
-                            </button>
-                        </div>
+
+
                     </div>
                 </div>
             </div>
 
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="">
+                            <div class="card-body">
+                                <div class="card-title">Séance Info:</div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputtext14" class="ul-form__label">Date:</label>
+                                        <input type="date" class="form-control" id="date" name="date" value="{{ date('Y-m-d') }}">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputEmail15" class="ul-form__label">Début:</label>
+                                        <input type="time" class="form-control" id="debut" name="debut">
+
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for="inputEmail16" class="ul-form__label">Fin:</label>
+                                        <input type="time" class="form-control" id="fin" name="fin">
+
+                                    </div>
+                                </div>
+                                <div class="custom-separator"></div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputtext14" class="ul-form__label">Enseignant:</label>
+                                        <input type="text" class="form-control" id="inputtext14" readonly value="{{ Auth::user()->name}}">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputtext14" class="ul-form__label">Classe:</label>
+                                        <input type="text" class="form-control" id="inputtext15" readonly value="{{$classe->libeclassar}}">
+                                        <input type="hidden" class="form-control" id="inputtext16" name="classe_IdClasse" value="{{$classe->IdClasse}}">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="exampleFormControlSelect1" class="ul-form__label">Matiere</label>
+                                        <select class="form-control" id="Matiere_id" name="matiere_id">
+                                            <option value="0">Choisir ...</option>
+                                            @foreach($matieres as $matiere)
+                                            <option value="{{$matiere->id}}">{{$matiere->NomMatiere}}</option>
+                                            @endforeach
+
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="exampleFormControlTextarea1">Commentaires</label>
+                                        <textarea class="form-control w-100" id="exampleFormControlTextarea1" rows="3" name="commentaires"></textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row text-right">
+                            <div class="col-lg-12 ">
+                                <button type="submit" class="btn btn-success m-1">
+                                    Enregistrer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
 
         </div>
-
-
-
-
-    </div>
     </form>
-    </div>
+</div>
 @endsection
 @section('scripts')
 <script>

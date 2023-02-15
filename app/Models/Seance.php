@@ -37,4 +37,8 @@ class Seance extends Model
     {
         return $this->attributes['exclus'] = json_decode($value);
     }
+    public function classe()
+    {
+        return $this->belongsTo(Classe::class,'Classe_id');
+    }
 }

@@ -47,9 +47,9 @@
 
 <div class="main-content">
                 <div class="breadcrumb">
-                    <h1>Home</h1>
+                    <h1>Enseignant</h1>
                     <ul>
-                        <li><a href="">Enseignant</a></li>
+                        <li><a href="">Mes Classes</a></li>
                     </ul>
 
                 </div>
@@ -57,11 +57,13 @@
                 <div class="separator-breadcrumb border-top"></div>
 
                 <div class="row mb-5">
-                <div class="col-md-12">
+                <!-- <div class="col-md-12">
                     <h2 class="card-title mb-4">Mes Classes</h2>
-                </div>
+                </div> -->
                 <div class="row mb-5 d-flex w-100 justify-content-around">
-                @foreach($eleves as $eleve)
+                  
+                    
+                @foreach($eleves as $key => $eleve)
                 <!-- card start -->
                 <div class="col-xl-4 col-lg-6">
     <div class="card l-bg-blue-dark">
@@ -107,12 +109,13 @@
                                     </tbody>
                                 </table>
                             </div>
-            <a href="{{route('seance.absence',$eleve[0]->classe->IdClasse)}}" class="btn btn-lg btn-block  btn-primary ">Faire l'appel</a>
+                            
+            <a href="{{route('seance.absence',$key)}}" class="btn btn-lg btn-block  btn-primary ">Faire l'appel</a>
           </div>
     </div>
 </div>
                 <!-- card end -->
-           
+          
                 
                 @endforeach
                 </div>

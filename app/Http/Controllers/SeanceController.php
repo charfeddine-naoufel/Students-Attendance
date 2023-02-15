@@ -23,8 +23,10 @@ class SeanceController extends Controller
 
    
     public function absence($id)
-    {
-        $classe=Classe::find($id)->first();
+    {     
+        $classe=Classe::where('IdClasse',$id)->first();
+    //   dd($classe);
+      
         $matieres=Matiere::all();
         // dd($classe->eleves);
         return view("prof.absence.seance",compact('classe','matieres'));
@@ -40,7 +42,8 @@ class SeanceController extends Controller
         $input['enseignant_id'] = $prof->id;
         // dd($input);
         Seance::create($input);
-        dd('good');
+        return redirect()->route('prof.home')
+                        ->with('success','Absense enregistrée.');
         
     }
     /**
@@ -81,9 +84,20 @@ class SeanceController extends Controller
      * @param  \App\Models\Seance  $seance
      * @return \Illuminate\Http\Response
      */
-    public function edit(Seance $seance)
+    public function edit($id)
     {
-        //
+         $seance =Seance::where('id',$id)->first();
+         $classe=Classe::where('IdClasse',$seance->classe_IdClasse)->first();
+         $matiere=Matiere::where(',id',$seance->matiere_id)->first();
+         $eleves=$classe->eleves;
+        //  dd($classe);
+                return response()->json([
+                               'success' => true,
+                                'data' => $seance,
+                                'classe'=>$classe,
+                                'matiere'=>$matiere,
+                                'eleves'=>$eleves
+                                  ]);
     }
 
     /**

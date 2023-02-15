@@ -1,125 +1,280 @@
 @extends('prof.layouts.master')
-@section('title','Mes Classes')
+@section('title','Absences')
 @section('customstyle')
 <style>
-.card {
-    background-color: #fff;
-    border-radius: 10px;
-    border: none;
-    position: relative;
-    margin-bottom: 30px;
-    box-shadow: 0 0.46875rem 2.1875rem rgba(90,97,105,0.1), 0 0.9375rem 1.40625rem rgba(90,97,105,0.1), 0 0.25rem 0.53125rem rgba(90,97,105,0.12), 0 0.125rem 0.1875rem rgba(90,97,105,0.1);
-}
-
-
-.l-bg-blue-dark {
-    background: linear-gradient(to right, #373b44, #4286f4) !important;
-    color: #fff;
-}
-
-
-
-/* .card .card-statistic-3 .card-icon-large .fas, .card .card-statistic-3 .card-icon-large .far, .card .card-statistic-3 .card-icon-large .fab, .card .card-statistic-3 .card-icon-large .fal {
-    font-size: 110px;
-} */
-
-.card .card-statistic-3 .card-icon {
-    text-align: center;
-    line-height: 50px;
-    margin-left: 15px;
-    color: #000;
-    position: absolute;
-    right: 0px;
-    top: 20px;
-    opacity: 0.1;
-}
-
-.l-bg-cyan {
-    background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
-    color: #fff;
-}
-
-
 
 </style>
 @endsection
 @section('content')
 
 <div class="main-content">
-                <div class="breadcrumb">
-                    <h1>Home</h1>
-                    <ul>
-                        <li><a href="">Enseignant</a></li>
-                    </ul>
+    <div class="breadcrumb">
+        <h1>Home</h1>
+        <ul>
+            <li><a href="">Enseignant</a></li>
+        </ul>
+
+    </div>
+
+    <div class="separator-breadcrumb border-top"></div>
+
+    <div class="row mb-4">
+
+
+        <div class="col-md-12 mb-3">
+            <div class="card text-left">
+
+                <div class="card-body">
+                    <h4 class="card-title mb-3">Absences</h4>
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Classe</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Horaire</th>
+                                    <th scope="col">Absents</th>
+                                    <th scope="col">Exclus</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach($absences as $absence)
+
+                                <tr>
+                                    <th scope="row">{{$loop->iteration}}</th>
+                                    <td>{{$cls[$absence->classe_IdClasse]}}</td>
+                                    <td>{{$absence->date}} </td>
+
+                                    <td>{{\Carbon\Carbon::createFromFormat('H:i:s',$absence->debut)->format('h:i')}} - {{\Carbon\Carbon::createFromFormat('H:i:s',$absence->fin)->format('h:i')}} </td>
+                                    <td><a href="{{'#collapse-icon'.$loop->iteration}}" class="text-default collapsed" data-toggle="collapse" aria-expanded="false">
+                                            <i class="i-Arrow-Down-2 t-font-boldest"></i>
+                                        </a>
+
+                                        <div class="collapse" id="{{'collapse-icon'.$loop->iteration}}">
+                                            <div class="mt-3">
+                                            <ul class="list-group">
+                                
+                                            @foreach($absence->absents as $absent)
+                                                <li class="list-group-item p-1 w-80" style="font-family: 'Cairo', sans-serif;font-size: 10px;">{{$abs[$absent]}}</li>
+                                                @endforeach
+                                            </ul>
+                                               
+                                            </div>
+                                        </div>
+
+
+                                    </td>
+                                    <td><a href="{{'#collapse-icon'.'-'.$loop->iteration}}" class="text-default collapsed" data-toggle="collapse" aria-expanded="false">
+                                            <i class="i-Arrow-Down-2 t-font-boldest"></i>
+                                        </a>
+
+                                        <div class="collapse" id="{{'collapse-icon'.'-'.$loop->iteration}}">
+                                            <div class="mt-3">
+                                            <ul class="list-group">
+                                
+                                                @foreach($absence->exclus as $exclu)
+                                                <li class="list-group-item p-1 w-80" style="font-family: 'Cairo', sans-serif;font-size: 10px;">{{$abs[$exclu]}}</li>
+                                                @endforeach
+                                            </ul>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <a href=""><i class="i-Pen-5 text-19 text-success font-weight-700 editbtn" data-id="{{$absence->id}} " data-toggle="modal" data-target=".bd-example-modal-xl"></i></a>
+
+                                        <a href=""><i class="i-Close-Window text-19 text-danger font-weight-700"></i></a>
+                                        <!-- <button type="button" class="btn btn-success ">
+                                <i class="nav-icon i-Pen-2 "></i>
+                            </button> -->
+                                        <!-- <button type="button" class="btn btn-danger ">
+                                <i class="nav-icon i-Close-Window "></i>
+                            </button> -->
+                                    </td>
+                                </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+
 
                 </div>
-
-                <div class="separator-breadcrumb border-top"></div>
-
-                <div class="row mb-5">
-                <div class="col-md-12">
-                    <h2 class="card-title mb-4">Mes Classes</h2>
-                </div>
-                <div class="row mb-5 d-flex w-100 justify-content-around">
-                @foreach($eleves as $eleve)
-                <!-- card start -->
-                <div class="col-xl-4 col-lg-6">
-    <div class="card l-bg-blue-dark">
-        <div class="card-statistic-3 p-4">
-            <div class="card-icon card-icon-large">
-                <i class=" fas fa-user-friends" style="font-size: 80px !important;"></i>
             </div>
-            <div class="mb-4">
-                <h3 class="card-title mb-0 text-white text-center" style="font-family: 'Cairo', sans-serif;font-size: 30px;font-weight:400;">{{$eleve[0]->classe->libeclassar}}</h3>
-            </div>
-            <div class="row align-items-center mb-2 d-flex">
-                <div class="col-6">
-                    <h4 class="d-flex align-items-center mb-0">
-                        Total:20
-                    </h4>
-                </div>
-                <div class="col-6 text-right">
-                    <span>Absent:2 </span>
-                </div>
-            </div>
-            
         </div>
-        <div class="card-body bg-white mt-0 p-0 shadow">
-                            <div class="table-responsive ">
-                                <table class="table table-striped table-dark table-sm">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">N°</th>
-                                            <th scope="col">Nom et Prenom</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($eleve as $el)
-                                        <tr>
-                                            <th scope="row">{{$loop->iteration}}</th>
-                                            <td style="font-family: 'Cairo', sans-serif;font-size: 20px;">{{$el->NomPrenom}}</td>
-                                            
-                                        </tr>
-                                        @endforeach
-                                        
 
-                                    </tbody>
-                                </table>
+        <!-- end of col-->
+<!-- Large Modal -->
+<div class="modal fade bd-example-modal-xl "  tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-lg" style="max-width:900px">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                        <div class="separator-breadcrumb border-top"></div>
+    <form method="post" action="{{route('seance.store_absence') }}">
+        @csrf
+        <div class="row mb-5">
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                    <div class="card-body ">
+                        <div class="card-title mb-0">Liste des élèves <button type="button" class="btn btn-dark btn-sm m-1 clear">Clear</button></div>
+
+                        <div class="table-responsive ">
+                            <table class="table table-sm table-bordered" id="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="width:5%">N°</th>
+                                        <th scope="col" style="width:75%">Nom</th>
+                                        <th scope="col" style="width:10%">Abs</th>
+                                        <th scope="col" style="width:10%">Ex</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- <tr>
+                                        <th scope="row">1</th>
+                                        <td style="text-align:center;font-family: 'Noto Naskh Arabic', serif;font-size: 15px;">hhhh</td>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="checkbox" name="absents[]" value="" type="checkbox" id="flexCheckDefault">
+
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="checkbox" name="exclus[]" value="" type="checkbox" id="flexCheckDefault">
+
+                                            </div>
+                                        </td>
+                                    </tr> -->
+
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="">
+                            <div class="card-body">
+                                <div class="card-title">Séance Info:</div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputtext14" class="ul-form__label">Date:</label>
+                                        <input type="date" class="form-control" id="date" name="date" value="{{ date('Y-m-d') }}">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputEmail15" class="ul-form__label">Début:</label>
+                                        <input type="time" class="form-control" id="debut" name="debut">
+
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for="inputEmail16" class="ul-form__label">Fin:</label>
+                                        <input type="time" class="form-control" id="fin" name="fin">
+
+                                    </div>
+                                </div>
+                                <div class="custom-separator"></div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputtext14" class="ul-form__label">Enseignant:</label>
+                                        <input type="text" class="form-control" id="inputtext14" readonly value="{{ Auth::user()->name}}">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputtext14" class="ul-form__label">Classe:</label>
+                                        <input type="text" class="form-control" id="classe" readonly value="">
+                                        <input type="hidden" class="form-control" id="inputtext16" name="classe_IdClasse" value="">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="exampleFormControlSelect1" class="ul-form__label">Matiere</label>
+                                        <select class="form-control" id="Matiere_id" name="matiere_id">
+                                            <option value="0">Choisir ...</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="exampleFormControlTextarea1">Commentaires</label>
+                                        <textarea class="form-control w-100" id="exampleFormControlTextarea1" rows="3" name="commentaires"></textarea>
+                                    </div>
+
+                                </div>
                             </div>
-            <a href="{{route('seance.absence',$eleve[0]->classe->IdClasse)}}" class="btn btn-lg btn-block  btn-primary ">Faire l'appel</a>
-          </div>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row text-right">
+                            <div class="col-lg-12 ">
+                                <button type="submit" class="btn btn-success m-1">
+                                    Enregistrer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+
+        </div>
+    </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
 </div>
-                <!-- card end -->
-           
+@endsection
+@section('scripts')
+<script>
+    $( document ).ready(function() {
+        $( ".editbtn" ).click(function( event ) {
+            event.preventDefault();
+            var id =$(this).data("id");
+            $.get("seances/"+id+"/edit", function (data) {
+                console.log(data);
+                var i=1;
+                data.eleves.forEach(function(row) {
+                var html = "<tr><td>"+i+"</td><td>"+row.NomPrenom+'</td><td><div class="form-check"><input class="checkbox" name="absents[]" value="" type="checkbox" id="flexCheckDefault"></div></td><td>'
+                +'<div class="form-check"><input class="checkbox" name="exclus[]" value="" type="checkbox" id="flexCheckDefault"></div></td></tr>'
+                $("#table").find('tbody').append(html);
+                i++;
+                });
+                 $('#date').val(data.data['date']);
+                 $('#debut').val(data.data['debut']);
+                 $('#fin').val(data.data['fin']);
+                 $('#classe').val(data.classe['libeclassar']);
+            // $('#NomMatiere').val(data.data['NomMatiere']);
+            // $('#IdMatiere').val(data.data['id']);
+
                 
-                @endforeach
-                </div>
-               
-                <!-- end of col -->
 
-
-            </div>
-            </div>
+            });
+  
+});
+});
+</script>
 @endsection
