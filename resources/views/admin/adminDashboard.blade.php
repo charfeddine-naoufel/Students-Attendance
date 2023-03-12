@@ -172,7 +172,7 @@
                     </thead>
                     <tbody>
 
-                        @foreach($absences as $absence)
+                    @forelse($absences as $absence)
 
                         <tr>
                             <th scope="row">{{$loop->iteration}}</th>
@@ -211,7 +211,9 @@
 
 
                         </tr>
-                        @endforeach
+                        @empty
+                            <tr><td>Aucune absence</td></tr>
+                        @endforelse
 
                     </tbody>
                 </table>

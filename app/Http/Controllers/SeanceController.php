@@ -88,13 +88,15 @@ class SeanceController extends Controller
     {
          $seance =Seance::where('id',$id)->first();
          $classe=Classe::where('IdClasse',$seance->classe_IdClasse)->first();
-         $matiere=Matiere::where(',id',$seance->matiere_id)->first();
+         $matiere=Matiere::where('id',$seance->matiere_id)->first();
+         $matieres=Matiere::all();
          $eleves=$classe->eleves;
         //  dd($classe);
                 return response()->json([
                                'success' => true,
                                 'data' => $seance,
                                 'classe'=>$classe,
+                                'matieres'=>$matieres,
                                 'matiere'=>$matiere,
                                 'eleves'=>$eleves
                                   ]);

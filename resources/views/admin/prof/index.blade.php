@@ -166,7 +166,7 @@
 
 
                                         <td class="d-flex">
-                                            <button class="btn text-success bg-transparent btn-icon  mr-2 editbtn" data-id="{{$enseignant->id}}"  data-toggle="modal" data-target="#editModalContent" ><i class="nav-icon i-Pen-5 font-weight-bold"></i></button>
+                                            <button class="btn text-success bg-transparent btn-icon  mr-2 editbtn" data-id="{{$enseignant->id}}" data-toggle="modal" data-target="#editModalContent"><i class="nav-icon i-Pen-5 font-weight-bold"></i></button>
 
                                             <!-- <a href="#" class="text-success mr-2">
                                                     <i class="nav-icon i-Pen-2 font-weight-bold"></i>
@@ -177,7 +177,7 @@
                                                 <!-- <a  class="text-danger mr-2" type="submit">
                                                     <i class="nav-icon i-Close-Window font-weight-bold"></i>
                                                 </a> -->
-                                                <button class="btn text-danger  btn-icon  mr-2 alert-confirm"   ><i class="nav-icon i-Close-Window font-weight-bold"></i></i></button>
+                                                <button class="btn text-danger  btn-icon  mr-2 alert-confirm"><i class="nav-icon i-Close-Window font-weight-bold"></i></i></button>
 
                                             </form>
 
@@ -214,40 +214,50 @@
 
                             <div class="form-group">
                                 <label for="recipient-name-1" class="col-form-label"> Code Enseignant:</label>
-                                <input type="text" class="form-control"  name="CodeEnseignant">
+                                <input type="text" class="form-control" name="CodeEnseignant">
                             </div>
                             <div class="form-group">
                                 <label for="NomEnseignant" class="col-form-label">Nom Enseignant:</label>
-                                <input type="text" class="form-control"  name="NomEnseignant">
+                                <input type="text" class="form-control" name="NomEnseignant">
                             </div>
                             <div class="form-group">
-                            <label for="exampleFormControlSelect1">Code Matiere</label>
-                            <select class="form-control" id="Matiere_id" name="Matiere_id">
-                            <option value="0" >Choisir ...</option>
-                              @foreach($matieres as $matiere)
-                            <option value="{{$matiere->id}}" >{{$matiere->NomMatiere}}</option>
-                            @endforeach
-                            
-                            </select>
-                        </div>
+                                <label for="exampleFormControlSelect1">Code Matiere</label>
+                                <select class="form-control" id="Matiere_id" name="Matiere_id">
+                                    <option value="0">Choisir ...</option>
+                                    @foreach($matieres as $matiere)
+                                    <option value="{{$matiere->id}}">{{$matiere->NomMatiere}}</option>
+                                    @endforeach
+
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label for="Grade" class="col-form-label">Grade:</label>
-                                <input type="text" class="form-control"  name="Grade">
+                                <input type="text" class="form-control" name="Grade">
                             </div>
                             <div class="form-group">
                                 <label for="Type" class="col-form-label">Type:</label>
-                                <input type="text" class="form-control"  name="Type">
+                                <input type="text" class="form-control" name="Type">
                             </div>
                             <div class="form-group">
                                 <label for="classe" class="col-form-label">Classe:</label>
                                 <select class="classe form-control" name="classes[]" multiple="multiple" style="width: 100%">
-                                @foreach($classes as $classe)
-                            <option value="{{$classe->IdClasse}}" >{{$classe->libeclassar}}</option>
-                            @endforeach    
-                                
-                                      
-</select>
+                                    @foreach($classes as $classe)
+                                    <option value="{{$classe->IdClasse}}">{{$classe->libeclassar}}</option>
+                                    @endforeach
+
+                                </select>
                             </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Utilisateur</label>
+                                <select class="form-control" id="user_id" name="User_id">
+                                    <option value="0">Choisir ...</option>
+                                    @foreach($users as $user)
+                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                    @endforeach
+
+                                </select>
+                            </div>
+                           
 
 
                         </div>
@@ -269,7 +279,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form >
+                    <form>
                         @csrf
                         @method('PUT')
                         <div class="modal-body">
@@ -328,96 +338,110 @@
 @endsection
 @section('scripts')
 <script src="{{asset('assets/js/select2.min.js')}} "></script>
+<script src="{{asset('assets/js/vendor/toastr.min.js')}}"></script>
 <script>
     $(document).ready(function() {
         $('.classe').select2();
-        $('.alert-confirm').on('click', function (e) {
-        e.preventDefault();
-        var form =  $(this).closest("form");
-        swal({
-            title: 'Êtes vous sûr?',
-            text: "Cet action est irréversible!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#0CC27E',
-            cancelButtonColor: '#FF586B',
-            confirmButtonText: 'Oui, Supprimer!',
-            cancelButtonText: 'Non, Annuler!',
-            confirmButtonClass: 'btn btn-success mr-5',
-            cancelButtonClass: 'btn btn-danger',
-            buttonsStyling: false
-        }).then(function () {
-            form.submit();
-            swal(
-                'Supprimée!',
-                'L enseignant a bien été supprimée.',
-                'success'
-            )
-        }, function (dismiss) {
-            // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
-            if (dismiss === 'cancel') {
+        $('.alert-confirm').on('click', function(e) {
+            e.preventDefault();
+            var form = $(this).closest("form");
+            swal({
+                title: 'Êtes vous sûr?',
+                text: "Cet action est irréversible!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#0CC27E',
+                cancelButtonColor: '#FF586B',
+                confirmButtonText: 'Oui, Supprimer!',
+                cancelButtonText: 'Non, Annuler!',
+                confirmButtonClass: 'btn btn-success mr-5',
+                cancelButtonClass: 'btn btn-danger',
+                buttonsStyling: false
+            }).then(function() {
+                form.submit();
                 swal(
-                    'Annulée',
-                    'La supression est annulée !! :)',
-                    'error'
+                    'Supprimée!',
+                    'L enseignant a bien été supprimée.',
+                    'success'
                 )
-            }
-        })
-    });
+            }, function(dismiss) {
+                // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
+                if (dismiss === 'cancel') {
+                    swal(
+                        'Annulée',
+                        'La supression est annulée !! :)',
+                        'error'
+                    )
+                }
+            })
+        });
 
-    //edit button
-    $('.editbtn').on('click', function (e) {
-        e.preventDefault();
-        let id=$(this).data('id');
-      
-
-        // var action ="{{URL::to('enseignants')}}/"+id;
+        //edit button
+        $('.editbtn').on('click', function(e) {
+            e.preventDefault();
+            let id = $(this).data('id');
 
 
-        // var url = "{{URL::to('enseignants')}}";
-        
-        $.get("enseignants/" + id + "/edit", function (data) {
+            // var action ="{{URL::to('enseignants')}}/"+id;
+
+
+            // var url = "{{URL::to('enseignants')}}";
+
+            $.get("enseignants/" + id + "/edit", function(data) {
                 console.log(data.data);
                 $('#CodeEnseignant').val(data.data['CodeEnseignant']);
-            $('#NomEnseignant').val(data.data['NomEnseignant']);
-            $('#Grade').val(data.data['Grade']);
-            $('#Type').val(data.data['Type']);
-            $('#IdMatiere').val(data.data['id']);
+                $('#NomEnseignant').val(data.data['NomEnseignant']);
+                $('#Grade').val(data.data['Grade']);
+                $('#Type').val(data.data['Type']);
+                $('#IdMatiere').val(data.data['id']);
 
-                
+
 
             });
 
-        
-       
+
+
+
+        });
+        $('.updatebtn').on('click', function(e) {
+            e.preventDefault();
+            var CodeEnseignant = $('#CodeEnseignant').val();
+            var NomEnseignant = $('#NomEnseignant').val();
+            var Grade = $('#Grade').val();
+            var Type = $('#Type').val();
+            var id = $('#IdMatiere').val();
+
+            $.ajax({
+                method: "PUT",
+                url: "enseignants/" + id,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    id: id,
+                    CodeEnseignant: CodeEnseignant,
+                    NomEnseignant: NomEnseignant,
+                    Grade: Grade,
+                    Type: Type,
+
+                },
+                success: function(data) {
+                    $('.modal').modal('hide');
+                    // alert('update done')
+
+                }
+            });
+        });
+        // var msg = "{{Session::get('success')}}";
+        var exist = "{{Session::has('success')}}";
+        if (exist) {
+            alert(msg);
+            toastr.success("toastr is a Javascript library for non-blocking notifications. jQuery is required!", "Fast Duration", {
+                showDuration: 500
+            })
+        }
+
 
     });
-    $('.updatebtn').on('click', function (e) {
-        e.preventDefault();
-        var CodeEnseignant = $('#CodeEnseignant').val();
-        var NomEnseignant =  $('#NomEnseignant').val();
-        var Grade =  $('#Grade').val();
-        var Type =  $('#Type').val();
-        var id = $('#IdMatiere').val();
-        
-        $.ajax({
-        method:"PUT",
-        url: "enseignants/"+id,
-        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        data:{
-          id:id,
-          CodeEnseignant:CodeEnseignant,
-          NomEnseignant:NomEnseignant,
-          Grade:Grade,
-          Type:Type,
-         
-        },
-        success: function(data){
-            $('.modal').modal('hide');
-        // alert('update done')
-   
-    }});
-});
-});
 </script>
 @endsection

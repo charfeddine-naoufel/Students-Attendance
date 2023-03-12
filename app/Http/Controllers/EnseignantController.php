@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Classe;
 use App\Models\Enseignant;
 use App\Models\Matiere;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,9 +22,10 @@ class EnseignantController extends Controller
         $enseignants = Enseignant::latest()->paginate(20);
         $matieres = Matiere::all();
         $classes = Classe::all();
+        $users = User::all();
         
     
-        return view('admin.prof.index',['enseignants'=>$enseignants,'matieres'=>$matieres ,'classes'=>$classes])->with('i', (request()->input('page', 1) - 1) * 20);
+        return view('admin.prof.index',['enseignants'=>$enseignants,'matieres'=>$matieres ,'classes'=>$classes,'users'=>$users])->with('i', (request()->input('page', 1) - 1) * 20);
     }
 
     //mes classes
@@ -66,6 +68,7 @@ class EnseignantController extends Controller
             'CodeEnseignant' => 'required|numeric',
             'NomEnseignant' => 'required',
             'Matiere_id' => 'required',
+            'User_id' => 'required|unique:enseignants',
             'Grade' => 'nullable',
             'Type' => 'nullable',
             'classes' => 'nullable',
