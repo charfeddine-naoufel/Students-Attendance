@@ -458,10 +458,10 @@
             var Grade = $('#Grade').val();
             var Type = $('#Type').val();
             var id = $('#IdEnseignant').val();
-            var User_id = $('#user_id').val();
+            var User_id = $('.user').val();
             
             // var User_id ='3';
-            var Matiere_id = $('#Matiere_id').val();
+            var Matiere_id = $('.mat').val();
             var Classes=$('.myclasse').val();
             
 
