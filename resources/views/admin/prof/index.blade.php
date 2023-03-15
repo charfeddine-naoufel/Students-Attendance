@@ -288,10 +288,21 @@
                                 <label for="recipient-name-1" class="col-form-label"> Code Enseignant:</label>
                                 <input type="text" class="form-control" id="CodeEnseignant" name="CodeEnseignant">
                                 <input type="hidden" class="form-control" id="IdEnseignant" name="IdEnseignant">
+                                <!-- <input type="hidden" class="form-control" id="userid" name="userid"> -->
                             </div>
                             <div class="form-group">
                                 <label for="recipient-name-2" class="col-form-label">Nom Enseignant:</label>
                                 <input type="text" class="form-control" id="NomEnseignant" name="NomEnseignant">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Matiere</label>
+                                <select class="form-control mat" id="Matiere_id" name="Matiere_id">
+                                    <option value="0">Choisir ...</option>
+                                    @foreach($matieres as $matiere)
+                                    <option value="{{$matiere->id}}">{{$matiere->NomMatiere}}</option>
+                                    @endforeach
+
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="Grade" class="col-form-label">Grade:</label>
@@ -301,7 +312,28 @@
                                 <label for="Type" class="col-form-label">Type:</label>
                                 <input type="text" class="form-control" id="Type" name="Type">
                             </div>
+                            <div class="form-group">
+                                <label for="classe" class="col-form-label">Classe:</label>
+                                <select class="classe myclasse form-control" name="classes[]"  multiple="multiple" style="width: 100%">
+                                    @foreach($classes as $classe)
+                                    <option value="{{$classe->IdClasse}}">{{$classe->libeclassar}}</option>
+                                    @endforeach
 
+                                </select>
+                                <small id="oldclasses" class="ul-form__text form-text text-success ">
+                                                                    
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Utilisateur</label>
+                                <select class="form-control user" id="user_id" name="User_id">
+                                    <option value="0">Choisir ...</option>
+                                    @foreach($users as $user)
+                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                    @endforeach
+
+                                </select>
+                            </div>
 
                         </div>
                         <div class="modal-footer">
@@ -341,7 +373,8 @@
 <script src="{{asset('assets/js/vendor/toastr.min.js')}}"></script>
 <script>
     $(document).ready(function() {
-        $('.classe').select2();
+        $('.classe').select2({placeholder: "Choisir...",
+    allowClear: true});
         $('.alert-confirm').on('click', function(e) {
             e.preventDefault();
             var form = $(this).closest("form");
@@ -389,11 +422,26 @@
 
             $.get("enseignants/" + id + "/edit", function(data) {
                 console.log(data.data);
+                // console.log(data.myclasses);
                 $('#CodeEnseignant').val(data.data['CodeEnseignant']);
                 $('#NomEnseignant').val(data.data['NomEnseignant']);
                 $('#Grade').val(data.data['Grade']);
                 $('#Type').val(data.data['Type']);
-                $('#IdMatiere').val(data.data['id']);
+                $('#IdEnseignant').val(data.data['id']);
+                $('.user').val(data.data['User_id']).change();
+                $('.mat').val(data.data['Matiere_id']).change();
+                // $("#Matiere_id option[value=5]").attr('selected', 'selected');
+                var selectedValues =$.map(data.myclasses, function(obj) {
+                        return { id: obj.IdClasse, text: obj.libeclassar };
+                
+                });
+            // console.log(selectedValues[0].id);
+            // $(".myclasse").append ('<option selected="selected" value="' + selectedValues[0].id+ '">' + 'test'+ '</option>');
+            // $(".myclasse").val(selectedValues).trigger("change"); 
+            $.each(selectedValues, function( index, value ) {
+            
+                $('#oldclasses').append('<span>'+value.text+' | '+'</span>');
+            });
 
 
 
@@ -409,7 +457,13 @@
             var NomEnseignant = $('#NomEnseignant').val();
             var Grade = $('#Grade').val();
             var Type = $('#Type').val();
-            var id = $('#IdMatiere').val();
+            var id = $('#IdEnseignant').val();
+            var User_id = $('#user_id').val();
+            
+            // var User_id ='3';
+            var Matiere_id = $('#Matiere_id').val();
+            var Classes=$('.myclasse').val();
+            
 
             $.ajax({
                 method: "PUT",
@@ -421,14 +475,19 @@
                     id: id,
                     CodeEnseignant: CodeEnseignant,
                     NomEnseignant: NomEnseignant,
+                    User_id:User_id,
+                    Matiere_id:Matiere_id,
                     Grade: Grade,
                     Type: Type,
+                    Classes: Classes,
 
                 },
                 success: function(data) {
                     $('.modal').modal('hide');
                     // alert('update done')
 
+                },error:function(data){
+                    // console.log(data)
                 }
             });
         });

@@ -8,6 +8,7 @@ use App\Models\Matiere;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class EnseignantController extends Controller
 {
@@ -109,10 +110,13 @@ class EnseignantController extends Controller
      */
     public function edit($id)
     {
-        $matiere = Enseignant::find($id); 
+        $enseignant = Enseignant::find($id); 
+        $classes=$enseignant->classes;
+        // $classes_enseignant=DB::table('classe_enseignant')->where('enseignant_id',$id)->get();
                 return response()->json([
                                'success' => true,
-                                'data' => $matiere 
+                                'data' => $enseignant ,
+                                'myclasses' => $classes
                                   ]);
     }
 
@@ -124,16 +128,38 @@ class EnseignantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, enseignant $enseignant)
-    {
+    { 
         $request->validate([
             'CodeEnseignant' => 'required|numeric',
             'NomEnseignant' => 'required',
             'Matiere_id' => 'required',
+            'User_id'=> 'required',
             'Grade' => 'nullable',
             'Type' => 'nullable',
+            // 'Classes' => 'nullable',
         ]);
+        
+        $enseignant->CodeEnseignant=$request->CodeEnseignant;
+        $enseignant->NomEnseignant=$request->NomEnseignant;
+        $enseignant->Matiere_id=$request->Matiere_id;
+        $enseignant->User_id=$request->User_id;
+        $enseignant->Grade=$request->Grade;
+        $enseignant->Type=$request->Type;
+        $enseignant->save();
+
+        $classes = $request->Classes;
+// dd($classes);
+      if ($classes ){
+        // DB::table('classe_enseignant')::find(1)->classes()->detach($enseignant);
+       DB::table('classe_enseignant')->where('enseignant_id',$enseignant->id)->get()->each(function ($classe) {
+            $enseignant=Enseignant::where('id',$classe->enseignant_id)->first();
+            $enseignant->classes()->detach($classe);
+            // $classe->destroy();
     
-        $enseignant->update($request->all());
+        });
+        
+        $enseignant->classes()->attach($classes);
+      };
         return response()->json([
             'success' => true,
            
