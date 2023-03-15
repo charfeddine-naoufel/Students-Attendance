@@ -20,7 +20,7 @@ class EnseignantController extends Controller
     public function index()
     {
         // get all the enseignants
-        $enseignants = Enseignant::latest()->paginate(20);
+        $enseignants = Enseignant::orderBy('id', 'asc')->paginate(30);
         $matieres = Matiere::all();
         $classes = Classe::all();
         $users = User::all();

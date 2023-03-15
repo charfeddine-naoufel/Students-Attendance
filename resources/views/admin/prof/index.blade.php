@@ -133,7 +133,7 @@
                                 <tbody>
                                     @foreach($enseignants as $enseignant)
                                     <tr>
-                                        <th scope="row">{{$loop->iteration }}</th>
+                                        <th scope="row">{{$enseignant->id }}</th>
                                         <td><strong>{{$enseignant->CodeEnseignant}} </strong></td>
                                         <td>
                                             <strong>
