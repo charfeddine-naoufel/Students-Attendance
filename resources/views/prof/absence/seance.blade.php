@@ -72,6 +72,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    
                                     @foreach($classe->eleves as $el)
                                     <tr>
                                         <th scope="row">{{$loop->iteration}}</th>
@@ -91,6 +92,7 @@
                                         </td>
                                     </tr>
                                     @endforeach
+                                  
 
 
                                 </tbody>

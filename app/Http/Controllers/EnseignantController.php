@@ -34,14 +34,16 @@ class EnseignantController extends Controller
     {
         $userId=Auth::user()->id;  
         $prof=Enseignant::where('User_id',$userId)->first();
+        // dd($prof);
        $classes=$prof->classes;
+        // dd($classes);
        $eleves=[];
        foreach ($classes as $classe) {
         $eleves[$classe->IdClasse]=$classe->eleves;
         }     
         
-    //    dd($eleves);
-            return view('prof.classe.index',compact('eleves'));
+        // dd($eleves);
+            return view('prof.classe.index',compact('eleves','classes'));
         
     }   
     
