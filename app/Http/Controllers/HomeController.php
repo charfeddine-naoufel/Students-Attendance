@@ -69,6 +69,7 @@ class HomeController extends Controller
     {
         $prof=Enseignant::where('User_id',Auth::user()->id)->first();
        $absences=Seance::where('enseignant_id',$prof->id)->orderBy('date','desc')->get();
+        // dd($absences);
        $abs=[]; 
        $eleves=Eleve::all();
        foreach($eleves as $eleve)

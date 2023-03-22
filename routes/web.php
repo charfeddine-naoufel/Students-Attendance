@@ -42,6 +42,7 @@ Route::prefix('prof')->middleware(['auth','prof'])->group(function(){
         Route::get('/home', [App\Http\Controllers\HomeController::class, 'profhome'])->name('prof.home');
         Route::get('/seances/create/{id}',[SeanceController::class,'absence'])->name('seance.absence');
         Route::get('/seances/{id}/edit',[SeanceController::class,'edit'])->name('seance.edit');
+        Route::get('/seances/{id}/update',[SeanceController::class,'update'])->name('seance.update');
         Route::post('/seances/store_absence',[SeanceController::class,'store_absence'])->name('seance.store_absence');
         Route::get('/mesCLasses', [EnseignantController::class, 'mesclasses'])->name('prof.mesclasses');
 

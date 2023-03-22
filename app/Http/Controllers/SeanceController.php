@@ -37,8 +37,8 @@ class SeanceController extends Controller
         //  dd($request);
         $prof=Enseignant::where('user_id',Auth::user()->id)->first();
         $input = $request->all();
-        $input['absents'] = $request->input('absents');
-        $input['exclus'] = $request->input('exclus');
+        $input['absents'] = $request->input('absents', []);
+        $input['exclus'] = $request->input('exclus', []);
         $input['enseignant_id'] = $prof->id;
         // dd($input);
         Seance::create($input);

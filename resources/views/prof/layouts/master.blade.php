@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{{asset('assets/styles/css/select2.min.css')}}">
     <!-- <link id="gull-theme" rel="stylesheet" href="http://gull-html-laravel.ui-lib.com/assets/styles/css/themes/lite-purple.min.css">
         <link rel="stylesheet" href="http://gull-html-laravel.ui-lib.com/assets/styles/vendor/perfect-scrollbar.css"> -->
-@yield('customstyle')
+    @yield('customstyle')
 </head>
 
 
@@ -45,9 +45,9 @@
 
     <div class="app-admin-wrap layout-sidebar-compact sidebar-dark-purple sidenav-open clearfix">
         <div class="side-content-wrap">
-            
+
             @include('prof.layouts.menu')
-            
+
             <div class="sidebar-overlay"></div>
         </div>
         <!--=============== Left side End ================-->
@@ -130,7 +130,7 @@
             <!-- header top menu end -->
 
             <!-- ============ end of header menu ============= -->
-           @yield('content')
+            @yield('content')
 
             <!-- Footer Start -->
             <div class="flex-grow-1"></div>
@@ -155,7 +155,7 @@
     </div>
     <!--=============== End app-admin-wrap ================-->
 
-  
+
 
 
 
@@ -178,10 +178,10 @@
 
 
 
-    
 
 
-    
+
+
 
 
     </div>
@@ -213,21 +213,21 @@
 
 
     <script src="http://gull-html-laravel.ui-lib.com/assets/js/common-bundle-script.js"></script>
-        
-        
-        
-        
-        <script src="http://gull-html-laravel.ui-lib.com/assets/js/script.js"></script>
 
 
-                <script src="http://gull-html-laravel.ui-lib.com/assets/js/sidebar.compact.script.js"></script>
 
 
-        
+    <script src="http://gull-html-laravel.ui-lib.com/assets/js/script.js"></script>
 
 
-        <script src="http://gull-html-laravel.ui-lib.com/assets/js/customizer.script.js"></script> 
-        @yield('scripts')
+    <script src="http://gull-html-laravel.ui-lib.com/assets/js/sidebar.compact.script.js"></script>
+
+
+
+
+
+    <script src="http://gull-html-laravel.ui-lib.com/assets/js/customizer.script.js"></script>
+    @yield('scripts')
 
 
 

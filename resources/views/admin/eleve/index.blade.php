@@ -166,7 +166,7 @@
 
 
                                         <td class="d-flex">
-                                            <button class="btn text-success bg-transparent btn-icon  mr-2 editbtn" data-id="{{$eleve->id}}"  data-toggle="modal" data-target="#editModalContent" ><i class="nav-icon i-Pen-5 font-weight-bold"></i></button>
+                                            <button class="btn text-success bg-transparent btn-icon  mr-2 editbtn" data-id="{{$eleve->id}}" data-toggle="modal" data-target="#editModalContent"><i class="nav-icon i-Pen-5 font-weight-bold"></i></button>
 
                                             <!-- <a href="#" class="text-success mr-2">
                                                     <i class="nav-icon i-Pen-2 font-weight-bold"></i>
@@ -177,7 +177,7 @@
                                                 <!-- <a  class="text-danger mr-2" type="submit">
                                                     <i class="nav-icon i-Close-Window font-weight-bold"></i>
                                                 </a> -->
-                                                <button class="btn text-danger  btn-icon  mr-2 alert-confirm"   ><i class="nav-icon i-Close-Window font-weight-bold"></i></i></button>
+                                                <button class="btn text-danger  btn-icon  mr-2 alert-confirm"><i class="nav-icon i-Close-Window font-weight-bold"></i></i></button>
 
                                             </form>
 
@@ -214,29 +214,29 @@
 
                             <div class="form-group">
                                 <label for="recipient-name-1" class="col-form-label"> Code eleve:</label>
-                                <input type="text" class="form-control"  name="Codeeleve">
+                                <input type="text" class="form-control" name="Codeeleve">
                             </div>
                             <div class="form-group">
                                 <label for="Nomeleve" class="col-form-label">Nom eleve:</label>
-                                <input type="text" class="form-control"  name="Nomeleve">
+                                <input type="text" class="form-control" name="Nomeleve">
                             </div>
                             <div class="form-group">
-                            <label for="exampleFormControlSelect1">Code Matiere</label>
-                            <select class="form-control" id="Matiere_id" name="Matiere_id">
-                            <option value="0" >Choisir ...</option>
-                              @foreach($eleves as $matiere)
-                            <option value="{{$matiere->id}}" >{{$matiere->NomMatiere}}</option>
-                            @endforeach
-                            
-                            </select>
-                        </div>
+                                <label for="exampleFormControlSelect1">Code Matiere</label>
+                                <select class="form-control" id="Matiere_id" name="Matiere_id">
+                                    <option value="0">Choisir ...</option>
+                                    @foreach($eleves as $matiere)
+                                    <option value="{{$matiere->id}}">{{$matiere->NomMatiere}}</option>
+                                    @endforeach
+
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label for="Grade" class="col-form-label">Grade:</label>
-                                <input type="text" class="form-control"  name="Grade">
+                                <input type="text" class="form-control" name="Grade">
                             </div>
                             <div class="form-group">
                                 <label for="Type" class="col-form-label">Type:</label>
-                                <input type="text" class="form-control"  name="Type">
+                                <input type="text" class="form-control" name="Type">
                             </div>
 
 
@@ -259,7 +259,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form >
+                    <form>
                         @csrf
                         @method('PUT')
                         <div class="modal-body">
@@ -319,93 +319,96 @@
 @section('scripts')
 <script>
     $(document).ready(function() {
-        $('.alert-confirm').on('click', function (e) {
-        e.preventDefault();
-        var form =  $(this).closest("form");
-        swal({
-            title: 'Êtes vous sûr?',
-            text: "Cet action est irréversible!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#0CC27E',
-            cancelButtonColor: '#FF586B',
-            confirmButtonText: 'Oui, Supprimer!',
-            cancelButtonText: 'Non, Annuler!',
-            confirmButtonClass: 'btn btn-success mr-5',
-            cancelButtonClass: 'btn btn-danger',
-            buttonsStyling: false
-        }).then(function () {
-            form.submit();
-            swal(
-                'Supprimée!',
-                'L eleve a bien été supprimée.',
-                'success'
-            )
-        }, function (dismiss) {
-            // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
-            if (dismiss === 'cancel') {
+        $('.alert-confirm').on('click', function(e) {
+            e.preventDefault();
+            var form = $(this).closest("form");
+            swal({
+                title: 'Êtes vous sûr?',
+                text: "Cet action est irréversible!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#0CC27E',
+                cancelButtonColor: '#FF586B',
+                confirmButtonText: 'Oui, Supprimer!',
+                cancelButtonText: 'Non, Annuler!',
+                confirmButtonClass: 'btn btn-success mr-5',
+                cancelButtonClass: 'btn btn-danger',
+                buttonsStyling: false
+            }).then(function() {
+                form.submit();
                 swal(
-                    'Annulée',
-                    'La supression est annulée !! :)',
-                    'error'
+                    'Supprimée!',
+                    'L eleve a bien été supprimée.',
+                    'success'
                 )
-            }
-        })
-    });
+            }, function(dismiss) {
+                // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
+                if (dismiss === 'cancel') {
+                    swal(
+                        'Annulée',
+                        'La supression est annulée !! :)',
+                        'error'
+                    )
+                }
+            })
+        });
 
-    //edit button
-    $('.editbtn').on('click', function (e) {
-        e.preventDefault();
-        let id=$(this).data('id');
-      
-
-        // var action ="{{URL::to('enseignants')}}/"+id;
+        //edit button
+        $('.editbtn').on('click', function(e) {
+            e.preventDefault();
+            let id = $(this).data('id');
 
 
-        // var url = "{{URL::to('enseignants')}}";
-        
-        $.get("enseignants/" + id + "/edit", function (data) {
+            // var action ="{{URL::to('enseignants')}}/"+id;
+
+
+            // var url = "{{URL::to('enseignants')}}";
+
+            $.get("enseignants/" + id + "/edit", function(data) {
                 console.log(data.data);
                 $('#CodeEnseignant').val(data.data['CodeEnseignant']);
-            $('#NomEnseignant').val(data.data['NomEnseignant']);
-            $('#Grade').val(data.data['Grade']);
-            $('#Type').val(data.data['Type']);
-            $('#IdMatiere').val(data.data['id']);
+                $('#NomEnseignant').val(data.data['NomEnseignant']);
+                $('#Grade').val(data.data['Grade']);
+                $('#Type').val(data.data['Type']);
+                $('#IdMatiere').val(data.data['id']);
 
-                
+
 
             });
 
-        
-       
 
+
+
+        });
+        $('.updatebtn').on('click', function(e) {
+            e.preventDefault();
+            var CodeEnseignant = $('#CodeEnseignant').val();
+            var NomEnseignant = $('#NomEnseignant').val();
+            var Grade = $('#Grade').val();
+            var Type = $('#Type').val();
+            var id = $('#IdMatiere').val();
+
+            $.ajax({
+                method: "PUT",
+                url: "enseignants/" + id,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    id: id,
+                    CodeEnseignant: CodeEnseignant,
+                    NomEnseignant: NomEnseignant,
+                    Grade: Grade,
+                    Type: Type,
+
+                },
+                success: function(data) {
+                    $('.modal').modal('hide');
+                    // alert('update done')
+
+                }
+            });
+        });
     });
-    $('.updatebtn').on('click', function (e) {
-        e.preventDefault();
-        var CodeEnseignant = $('#CodeEnseignant').val();
-        var NomEnseignant =  $('#NomEnseignant').val();
-        var Grade =  $('#Grade').val();
-        var Type =  $('#Type').val();
-        var id = $('#IdMatiere').val();
-        
-        $.ajax({
-        method:"PUT",
-        url: "enseignants/"+id,
-        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        data:{
-          id:id,
-          CodeEnseignant:CodeEnseignant,
-          NomEnseignant:NomEnseignant,
-          Grade:Grade,
-          Type:Type,
-         
-        },
-        success: function(data){
-            $('.modal').modal('hide');
-        // alert('update done')
-   
-    }});
-});
-});
 </script>
 @endsection

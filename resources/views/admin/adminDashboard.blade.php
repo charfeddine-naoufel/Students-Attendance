@@ -188,9 +188,18 @@
 
                                 <div class="collapse" id="{{'collapse-icon'.$loop->iteration}}">
                                     <div class="mt-3">
-                                        @foreach($absence->absents as $absent)
-                                        <p style="font-family: 'Cairo', sans-serif;font-size: 13px;">{{$abs[$absent]}}</p>
-                                        @endforeach
+                                    <ul class="list-group">
+                                                @forelse ($absence->absents as $absent)
+
+                                                <li class="list-group-item p-1 w-80" style="font-family: 'Cairo', sans-serif;font-size: 10px;">{{$abs[$absent]}}</li>
+
+                                                    @empty
+
+                                                    <p class="bg-danger text-white p-1">Aucun Exclu</p>
+
+                                                    @endforelse
+
+                                                </ul>
                                     </div>
                                 </div>
 
@@ -202,9 +211,18 @@
 
                                 <div class="collapse" id="{{'collapse-icon'.'-'.$loop->iteration}}">
                                     <div class="mt-3">
-                                        @foreach($absence->exclus as $exclu)
-                                        <p style="font-family: 'Cairo', sans-serif;font-size: 13px;">{{$abs[$exclu]}}</p>
-                                        @endforeach
+                                    <ul class="list-group">
+                                                    @forelse ($absence->exclus as $exclu)
+
+                                                    <li class="list-group-item p-1 w-80" style="font-family: 'Cairo', sans-serif;font-size: 10px;">{{$abs[$exclu]}}</li>
+
+                                                    @empty
+
+                                                    <p class="bg-danger text-white p-1">Aucun Exclu</p>
+
+                                                    @endforelse
+
+                                                </ul>
                                     </div>
                                 </div>
                             </td>
