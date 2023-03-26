@@ -20,4 +20,8 @@ class Enseignant extends Model
     {
         return $this->belongsToMany(Classe::class ,'classe_enseignant');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class );
+    }
 }

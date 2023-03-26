@@ -32,8 +32,8 @@ class EnseignantController extends Controller
     //mes classes
     public function mesclasses()
     {
-        $userId=Auth::user()->id;  
-        $prof=Enseignant::where('User_id',$userId)->first();
+        $user=Auth::user();  
+        $prof=$user->enseignant;
         // dd($prof);
        $classes=$prof->classes;
         // dd($classes);
