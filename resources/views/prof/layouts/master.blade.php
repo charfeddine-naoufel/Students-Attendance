@@ -212,21 +212,21 @@
     <script src="{{asset('assets/fonts/fontawesome-free-5.12.1-web/js/all.min.js')}}"></script>
 
 
-    <script src="http://gull-html-laravel.ui-lib.com/assets/js/common-bundle-script.js"></script>
+    <!-- <script src="http://gull-html-laravel.ui-lib.com/assets/js/common-bundle-script.js"></script> -->
 
 
 
 
-    <script src="http://gull-html-laravel.ui-lib.com/assets/js/script.js"></script>
+    <!-- <script src="http://gull-html-laravel.ui-lib.com/assets/js/script.js"></script> -->
 
 
-    <script src="http://gull-html-laravel.ui-lib.com/assets/js/sidebar.compact.script.js"></script>
+    <!-- <script src="http://gull-html-laravel.ui-lib.com/assets/js/sidebar.compact.script.js"></script> -->
 
 
 
 
 
-    <script src="http://gull-html-laravel.ui-lib.com/assets/js/customizer.script.js"></script>
+    <!-- <script src="http://gull-html-laravel.ui-lib.com/assets/js/customizer.script.js"></script> -->
     @yield('scripts')
 
 
