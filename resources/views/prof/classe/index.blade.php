@@ -77,7 +77,7 @@
                         <div class="row align-items-center mb-2 d-flex">
                             <div class="col-6">
                                 <h4 class="d-flex align-items-center mb-0">
-                                    Total:20
+                                    Total:{{count($eleve)}}
                                 </h4>
                             </div>
                             <div class="col-6 text-right">
