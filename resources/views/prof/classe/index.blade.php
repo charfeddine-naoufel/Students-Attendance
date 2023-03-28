@@ -61,7 +61,7 @@
 
 
             
-            @dd($eleves,$classes->toArray())
+            
             @foreach($eleves as $key => $eleve)
             @if (!empty($eleve))
             <!-- card start -->

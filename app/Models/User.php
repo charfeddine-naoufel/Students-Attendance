@@ -40,6 +40,6 @@ class User extends Authenticatable
 
     public function enseignant()
     {
-        return $this->hasOne(Enseignant::class );
+        return $this->hasOne(Enseignant::class,'User_id','id');
     }
 }
