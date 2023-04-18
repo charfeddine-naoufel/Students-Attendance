@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classe;
 use App\Models\Eleve;
 use Illuminate\Http\Request;
 
@@ -18,14 +19,16 @@ class EleveController extends Controller
         // $eleves = Eleve::latest()->paginate(10);
         $eleves = Eleve::select('eleves.*','classes.libeclassar')
         ->join('classes', 'eleves.Classe_id', '=', 'classes.IdClasse')
+        // ->groupBy('eleves.Classe_id')
         ->paginate(10);
+        $classes=Classe::all();
         // $eleves->setCollection($eleves->groupBy('classe_id'));
         // $eleves = Eleve::latest()->groupBy('classe_id')->paginate(20);
         // $matieres = Matiere::all();
         // $classes = Classe::all();
         
     
-        return view('admin.eleve.index',['eleves'=>$eleves])->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('admin.eleve.index',['eleves'=>$eleves,'classes'=>$classes])->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -55,7 +58,8 @@ class EleveController extends Controller
             'Adresse' => 'nullable',
             'NomPere' => 'required',
             'NomMere' => 'nullable',
-            'GsmPere' => 'required|numeric',
+            'GsmPere' => 'nullable|numeric',
+            'Classe_id'=>'required'
         ]);
         Eleve::create($request->all());
         
@@ -63,7 +67,7 @@ class EleveController extends Controller
         
      
         return redirect()->route('eleves.index')
-                        ->with('success','Nouveau Enseignant crée avec succés.');
+                        ->with('success','Nouveau eleve crée avec succés.');
         
     }
 
@@ -86,10 +90,10 @@ class EleveController extends Controller
      */
     public function edit($id)
     {
-        $matiere = Eleve::find($id); 
+        $eleve = Eleve::find($id); 
                 return response()->json([
                                'success' => true,
-                                'data' => $matiere 
+                                'data' => $eleve 
                                   ]);
     }
 
@@ -111,6 +115,7 @@ class EleveController extends Controller
             'NomPere' => 'required',
             'NomMere' => 'nullable',
             'GsmPere' => 'required|numeric',
+            'Classe_id'=>'required'
         ]);
     
         $eleve->update($request->all());

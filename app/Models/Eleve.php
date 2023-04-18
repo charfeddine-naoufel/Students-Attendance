@@ -17,6 +17,7 @@ class Eleve extends Model
         'NomPere',
         'NomMere',
         'GSMPere',
+        'Classe_id',
         
     ];
     public function classe()

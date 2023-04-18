@@ -104,9 +104,9 @@
                         <div class="d-flex justify-content-between">
 
                             <h4 class="card-title mb-3"> Elèves</h4>
-                            <button type="button" class="btn btn-primary btn-icon m-1" data-toggle="modal" data-target="#verifyModalContent">
+                            <button type="button" class="btn btn-primary btn-icon m-1 ajout_el" data-toggle="modal" data-target="#new_e">
                                 <span class="ul-btn__icon"><i class="i-Add"></i></span>
-                                <span class="ul-btn__text">Ajouter</span>
+                                <span class="ul-btn__text ">Ajouter</span>
                             </button>
                         </div>
 
@@ -199,11 +199,11 @@
 
 
         <!-- Verify Modal content -->
-        <div class="modal fade" id="verifyModalContent" tabindex="-1" role="dialog" aria-labelledby="verifyModalContent" aria-hidden="true">
+        <div class="modal fade" id="new_e" tabindex="-1" role="dialog" aria-labelledby="verifyModalContent" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="verifyModalContent_title">Nouveau eleve</h5>
+                        <h5 class="modal-title" id="new">Nouveau eleve</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -212,32 +212,59 @@
                         @csrf
                         <div class="modal-body">
 
-                            <div class="form-group">
-                                <label for="recipient-name-1" class="col-form-label"> Code eleve:</label>
-                                <input type="text" class="form-control" name="Codeeleve">
+                        <div class="form-row">    
+                        <div class="form-group col-md-6">
+                                <label for="cin" class="col-form-label"> CIN:</label>
+                                <input type="text" class="form-control" name="CIN">
                             </div>
-                            <div class="form-group">
-                                <label for="Nomeleve" class="col-form-label">Nom eleve:</label>
-                                <input type="text" class="form-control" name="Nomeleve">
+                            <div class="form-group col-md-6">
+                                <label for="recipient-name-1" class="col-form-label"> Identifiant:</label>
+                                <input type="text" class="form-control" name="IdentifiantUnique">
                             </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="NomPrenom" class="col-form-label">Nom Prenom:</label>
+                                <input type="text" class="form-control" name="NomPrenom">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="DateNaissance" class="col-form-label">Date de naissance:</label>
+                                <input type="date" class="form-control" name="DateNaissance">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="Adresse" class="col-form-label">Adresse:</label>
+                                <input type="text" id="adr" class="  form-control" name="Adresse" value="الحامة">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="GSMPere" class="col-form-label">GSM Pere:</label>
+                                <input type="text" class="form-control" name="GSMPere">
+                            </div>
+                           
+                        </div>
+                        <div class="form-row">
+                        <div class="form-group col-md-6">
+                                <label for="NomPere" class="col-form-label">Nom Pere:</label>
+                                <input type="text" class="form-control" name="NomPere">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="NomMere" class="col-form-label">Nom Mere:</label>
+                                <input type="text" id="mere"class=" form-control" name="NomMere" value="--">
+                            </div>
+                            
+                        </div>
                             <div class="form-group">
-                                <label for="exampleFormControlSelect1">Code Matiere</label>
-                                <select class="form-control" id="Matiere_id" name="Matiere_id">
+                                <label for="exampleFormControlSelect1">Classe :</label>
+                                <select class="form-control" id="Classe_id" name="Classe_id">
                                     <option value="0">Choisir ...</option>
-                                    @foreach($eleves as $matiere)
-                                    <option value="{{$matiere->id}}">{{$matiere->NomMatiere}}</option>
+                                    @foreach($classes as $classe)
+                                    <option value="{{$classe->IdClasse}}">{{$classe->libeclassar}}</option>
                                     @endforeach
 
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label for="Grade" class="col-form-label">Grade:</label>
-                                <input type="text" class="form-control" name="Grade">
-                            </div>
-                            <div class="form-group">
-                                <label for="Type" class="col-form-label">Type:</label>
-                                <input type="text" class="form-control" name="Type">
-                            </div>
+                            
 
 
                         </div>
@@ -259,34 +286,69 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form>
+                    <form method="post" action="">
                         @csrf
-                        @method('PUT')
                         <div class="modal-body">
 
-                            <div class="form-group">
-                                <label for="recipient-name-1" class="col-form-label"> Code eleve:</label>
-                                <input type="text" class="form-control" id="Codeeleve" name="Codeeleve">
-                                <input type="hidden" class="form-control" id="Ideleve" name="Ideleve">
+                        <div class="form-row">    
+                        <div class="form-group col-md-6">
+                                <label for="cin" class="col-form-label"> CIN:</label>
+                                <input type="text" class="form-control" name="CIN">
                             </div>
-                            <div class="form-group">
-                                <label for="recipient-name-2" class="col-form-label">Nom eleve:</label>
-                                <input type="text" class="form-control" id="Nomeleve" name="Nomeleve">
+                            <div class="form-group col-md-6">
+                                <label for="recipient-name-1" class="col-form-label"> Identifiant:</label>
+                                <input type="text" class="form-control" name="IdentifiantUnique">
                             </div>
-                            <div class="form-group">
-                                <label for="Grade" class="col-form-label">Grade:</label>
-                                <input type="text" class="form-control" id="Grade" name="Grade">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="NomPrenom" class="col-form-label">Nom Prenom:</label>
+                                <input type="text" class="form-control" name="NomPrenom">
                             </div>
-                            <div class="form-group">
-                                <label for="Type" class="col-form-label">Type:</label>
-                                <input type="text" class="form-control" id="Type" name="Type">
+                            <div class="form-group col-md-6">
+                                <label for="DateNaissance" class="col-form-label">Date de naissance:</label>
+                                <input type="date" class="form-control" name="DateNaissance">
                             </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="Adresse" class="col-form-label">Adresse:</label>
+                                <input type="text" class=" adr form-control" name="Adresse" value='الحامة'>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="GSMPere" class="col-form-label">GSM Pere:</label>
+                                <input type="text" class="form-control" name="GSMPere">
+                            </div>
+                           
+                        </div>
+                        <div class="form-row">
+                        <div class="form-group col-md-6">
+                                <label for="NomPere" class="col-form-label">Nom Pere:</label>
+                                <input type="text" class="form-control" name="NomPere">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="NomMere" class="col-form-label">Nom Mere:</label>
+                                <input type="text" class="mere form-control" name="NomMere" value="--">
+                            </div>
+                            
+                        </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Classe :</label>
+                                <select class="form-control" id="Classe_id" name="Classe_id">
+                                    <option value="0">Choisir ...</option>
+                                    @foreach($classes as $classe)
+                                    <option value="{{$classe->IdClasse}}">{{$classe->libeclassar}}</option>
+                                    @endforeach
+
+                                </select>
+                            </div>
+                            
 
 
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                            <button type="" class="btn btn-primary updatebtn">Enregistrer</button>
+                            <button type="submit" class="btn btn-primary">Enregistrer</button>
                         </div>
                     </form>
                 </div>
@@ -319,6 +381,12 @@
 @section('scripts')
 <script>
     $(document).ready(function() {
+        $('.ajout_el').on('click', function(e) {
+            e.preventDefault();
+        
+        $('#adr').val('  الحامة');
+        $('#mere').val('--------');
+        });
         $('.alert-confirm').on('click', function(e) {
             e.preventDefault();
             var form = $(this).closest("form");

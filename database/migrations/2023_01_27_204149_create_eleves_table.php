@@ -21,7 +21,7 @@ class CreateElevesTable extends Migration
             $table->date('DateNaissance')->nullable();
             $table->string('Adresse') ->default('El-Hamma');
             $table->string('NomPere');
-            $table->string('NomMere');
+            $table->string('NomMere')->nullable();
             $table->string('GSMPere')->nullable();
             $table->bigInteger('Classe_id');
             $table->foreign('Classe_id')->references('IdClasse')->on('classes')->onDelete('cascade');
