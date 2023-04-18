@@ -82,7 +82,7 @@ class EnseignantController extends Controller
         //  dd($request);
     // $regions  = [1, 2, 3];
     $classes = $request->classes;
-// dd($classes);
+
       
         $prof->classes()->attach($classes);
         

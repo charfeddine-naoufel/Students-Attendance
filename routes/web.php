@@ -5,6 +5,7 @@ use App\Http\Controllers\EleveController;
 use App\Http\Controllers\EnseignantController;
 use App\Http\Controllers\MatiereController;
 use App\Http\Controllers\SeanceController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,7 @@ Route::prefix('admin')->middleware(['auth','admin'])->group(function(){
         Route::resource('enseignants', EnseignantController::class);
         Route::resource('eleves', EleveController::class);
         Route::resource('classes', ClasseController::class);
+        Route::resource('users', UserController::class);
         
 
         Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.home');

@@ -19,7 +19,7 @@ class EleveController extends Controller
         // $eleves = Eleve::latest()->paginate(10);
         $eleves = Eleve::select('eleves.*','classes.libeclassar')
         ->join('classes', 'eleves.Classe_id', '=', 'classes.IdClasse')
-        // ->groupBy('eleves.Classe_id')
+        ->orderBy('classes.IdClasse')
         ->paginate(10);
         $classes=Classe::all();
         // $eleves->setCollection($eleves->groupBy('classe_id'));
@@ -58,7 +58,7 @@ class EleveController extends Controller
             'Adresse' => 'nullable',
             'NomPere' => 'required',
             'NomMere' => 'nullable',
-            'GsmPere' => 'nullable|numeric',
+            'GSMPere' => 'nullable|numeric',
             'Classe_id'=>'required'
         ]);
         Eleve::create($request->all());
@@ -107,20 +107,21 @@ class EleveController extends Controller
     public function update(Request $request, eleve $eleve)
     {
         $request->validate([
-            'CIN' => 'nullable|numeric',
+            'CIN' => 'nullable',
             'IdentifiantUnique' => 'required',
             'NomPrenom' => 'required',
             'DateNaissance' => 'nullable',
             'Adresse' => 'nullable',
             'NomPere' => 'required',
             'NomMere' => 'nullable',
-            'GsmPere' => 'required|numeric',
+            'GSMPere' => 'required|numeric',
             'Classe_id'=>'required'
         ]);
     
         $eleve->update($request->all());
         return response()->json([
             'success' => true,
+           
            
                ]); 
      

@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title','Enseignants')
+@section('title','Utilisateurs')
 @section('content')
 <div class="app-admin-wrap layout-sidebar-large clearfix">
     <div class="main-header">
@@ -88,7 +88,7 @@
         <div class="breadcrumb">
             <h1 class="mr-2">Dashboard</h1>
             <ul>
-                <li><a href="">Enseignants</a></li>
+                <li><a href="">Utilisateurs</a></li>
                 <!-- <li>Version 1</li> -->
             </ul>
         </div>
@@ -103,75 +103,59 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
 
-                            <h4 class="card-title mb-3"> Elèves</h4>
-                            <button type="button" class="btn btn-primary btn-icon m-1 ajout_el" data-toggle="modal" data-target="#new_e">
+                            <h4 class="card-title mb-3"> Utilisateurs</h4>
+                            <button type="button" class="btn btn-primary btn-icon m-1" data-toggle="modal" data-target="#verifyModalContent">
                                 <span class="ul-btn__icon"><i class="i-Add"></i></span>
-                                <span class="ul-btn__text ">Ajouter</span>
+                                <span class="ul-btn__text">Ajouter</span>
                             </button>
                         </div>
 
                         <p>
-                            Vous pouvez créer, mettre à jour ou supprimer un élève.
+                            Vous pouvez créer, mettre à jour ou supprimer un enseignant.
 
                         </p>
                         <div class="table-responsive">
-                            <table class="table table-sm table-striped">
+                            <table class="table ">
                                 <thead class="thead-dark">
 
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Identifiant</th>
-                                        <th scope="col">Nom et Prenom</th>
-                                        <th scope="col">Nom Père</th>
-                                        <th scope="col">Tél Père</th>
-                                        <th scope="col">Classe</th>
-
-
+                                        <th scope="col">Nom </th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Role</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($eleves as $eleve)
+                                    @foreach($users as $user)
                                     <tr>
-                                        <th scope="row">{{$loop->iteration }}</th>
-                                        <td><strong>{{$eleve->IdentifiantUnique}} </strong></td>
+                                        <th scope="row">{{$user->id }}</th>
+                                        <td><strong>{{$user->name}} </strong></td>
                                         <td>
                                             <strong>
 
-                                                {{$eleve->NomPrenom}}
+                                                {{$user->email}}
                                             </strong>
 
                                         </td>
                                         <td>
                                             <strong>
 
-                                                {{$eleve->NomPere}}
+                                                {{$user->role}}
                                             </strong>
 
                                         </td>
-                                        <td>
-                                            <strong>
-
-                                                {{$eleve->GSMPere}}
-                                            </strong>
-
-                                        </td>
-                                        <td>
-                                            <strong>
-
-                                                {{$eleve->libeclassar}}
-                                            </strong>
-
-                                        </td>
+                                        
+                                        
 
 
                                         <td class="d-flex">
-                                            <button class="btn text-success bg-transparent btn-icon  mr-2 editbtn" data-id="{{$eleve->id}}" data-toggle="modal" data-target="#editModalContent"><i class="nav-icon i-Pen-5 font-weight-bold"></i></button>
+                                            <button class="btn text-success bg-transparent btn-icon  mr-2 editbtn" data-id="{{$user->id}}" data-toggle="modal" data-target="#editModalContent"><i class="nav-icon i-Pen-5 font-weight-bold"></i></button>
 
                                             <!-- <a href="#" class="text-success mr-2">
                                                     <i class="nav-icon i-Pen-2 font-weight-bold"></i>
                                                 </a> -->
-                                            <form action="{{ route('eleves.destroy', $eleve->id)}}" method="post" class="inline-block">
+                                            <form action="{{ route('users.destroy', $user->id)}}" method="post" class="inline-block">
                                                 @csrf
                                                 @method('DELETE')
                                                 <!-- <a  class="text-danger mr-2" type="submit">
@@ -192,79 +176,51 @@
 
 
                     </div>
-                    {!! $eleves->links() !!}
+                    {!! $users->links() !!}
                 </div>
             </div>
         </div>
 
 
         <!-- Verify Modal content -->
-        <div class="modal fade" id="new_e" tabindex="-1" role="dialog" aria-labelledby="verifyModalContent" aria-hidden="true">
+        <div class="modal fade" id="verifyModalContent" tabindex="-1" role="dialog" aria-labelledby="verifyModalContent" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="new">Nouveau eleve</h5>
+                        <h5 class="modal-title" id="verifyModalContent_title">Nouveau Utilisateur</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form method="post" action="{{route('eleves.store') }}">
+                    <form method="post" action="{{route('users.store') }}">
                         @csrf
                         <div class="modal-body">
 
-                        <div class="form-row">    
-                        <div class="form-group col-md-6">
-                                <label for="cin" class="col-form-label"> CIN:</label>
-                                <input type="text" class="form-control" name="CIN">
+                            <div class="form-group">
+                                <label for="name" class="col-form-label"> Nom :</label>
+                                <input type="text" class="form-control" name="name">
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="recipient-name-1" class="col-form-label"> Identifiant:</label>
-                                <input type="text" class="form-control" name="IdentifiantUnique">
+                            <div class="form-group">
+                                <label for="email" class="col-form-label">Email :</label>
+                                <input type="email" class="form-control" name="email">
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="NomPrenom" class="col-form-label">Nom Prenom:</label>
-                                <input type="text" class="form-control" name="NomPrenom">
+                            <div class="form-group">
+                                <label for="password" class="col-form-label">Mot de passe :</label>
+                                <input type="password" class="form-control" name="password">
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="DateNaissance" class="col-form-label">Date de naissance:</label>
-                                <input type="date" class="form-control" name="DateNaissance">
+                            <div class="form-group">
+                                <label for="c-password" class="col-form-label">Confirmer Mot de passe :</label>
+                                <input type="password" class="form-control" name="password_confirmation">
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="Adresse" class="col-form-label">Adresse:</label>
-                                <input type="text" id="adr" class="  form-control" name="Adresse" value="الحامة">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="GSMPere" class="col-form-label">GSM Pere:</label>
-                                <input type="text" class="form-control" name="GSMPere">
+                            
+                            <div class="form-group">
+                                <label for="Grade" class="col-form-label">Role:</label>
+                                <input type="text" class="form-control" name="role">
                             </div>
                            
-                        </div>
-                        <div class="form-row">
-                        <div class="form-group col-md-6">
-                                <label for="NomPere" class="col-form-label">Nom Pere:</label>
-                                <input type="text" class="form-control" name="NomPere">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="NomMere" class="col-form-label">Nom Mere:</label>
-                                <input type="text" id="mere"class=" form-control" name="NomMere" value="--">
-                            </div>
                             
-                        </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect1">Classe :</label>
-                                <select class="form-control" id="Classe_id" name="Classe_id">
-                                    <option value="0">Choisir ...</option>
-                                    @foreach($classes as $classe)
-                                    <option value="{{$classe->IdClasse}}">{{$classe->libeclassar}}</option>
-                                    @endforeach
-
-                                </select>
-                            </div>
                             
+                           
 
 
                         </div>
@@ -281,75 +237,39 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editModalContent_title">Modifier eleve</h5>
+                        <h5 class="modal-title" id="editModalContent_title">Modifier Utilisateur</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form method="post" action="">
+                    <form>
                         @csrf
+                        @method('PUT')
                         <div class="modal-body">
 
-                        <div class="form-row">    
-                        <div class="form-group col-md-6">
-                                <label for="cin" class="col-form-label"> CIN:</label>
-                                <input type="text" class="form-control" id="CIN">
-                                <input type="hidden" class="form-control" id="Ideleve">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="recipient-name-1" class="col-form-label"> Identifiant:</label>
-                                <input type="text" class="form-control" id="IdentifiantUnique">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="NomPrenom" class="col-form-label">Nom Prenom:</label>
-                                <input type="text" class="form-control" id="NomPrenom">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="DateNaissance" class="col-form-label">Date de naissance:</label>
-                                <input type="date" class="form-control" id="DateNaissance">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="Adresse" class="col-form-label">Adresse:</label>
-                                <input type="text" class=" adr form-control" id="Adresse" value='الحامة'>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="GSMPere" class="col-form-label">GSM Pere:</label>
-                                <input type="text" class="form-control" id="GSMPere">
-                            </div>
-                           
-                        </div>
-                        <div class="form-row">
-                        <div class="form-group col-md-6">
-                                <label for="NomPere" class="col-form-label">Nom Pere:</label>
-                                <input type="text" class="form-control" id="NomPere">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="NomMere" class="col-form-label">Nom Mere:</label>
-                                <input type="text" class="mere form-control" id="NomMere" value="--">
-                            </div>
-                            
-                        </div>
                             <div class="form-group">
-                                <label for="exampleFormControlSelect1">Classe :</label>
-                                <select class="form-control" id="Classe_id" id="Classe_id">
-                                    <option value="0">Choisir ...</option>
-                                    @foreach($classes as $classe)
-                                    <option value="{{$classe->IdClasse}}">{{$classe->libeclassar}}</option>
-                                    @endforeach
-
-                                </select>
+                                <label for="recipient-name-1" class="col-form-label"> Nom:</label>
+                                <input type="text" class="form-control" id="name" name="name">
+                                <input type="hidden" class="form-control" id="Iduser" name="Iduser">
+                                <!-- <input type="hidden" class="form-control" id="userid" name="userid"> -->
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name-2" class="col-form-label">Email:</label>
+                                <input type="email" class="form-control" id="email" name="email">
                             </div>
                             
-
+                            <div class="form-group">
+                                <label for="Grade" class="col-form-label">Role :</label>
+                                <input type="text" class="form-control" id="role" name="role">
+                            </div>
+                            
+                            
+                            
 
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                            <button  class="btn btn-primary updatebtn ">Enregistrer</button>
+                            <button type="" class="btn btn-primary updatebtn">Enregistrer</button>
                         </div>
                     </form>
                 </div>
@@ -380,14 +300,11 @@
 </div>
 @endsection
 @section('scripts')
+<script src="{{asset('assets/js/select2.min.js')}} "></script>
+<script src="{{asset('assets/js/vendor/toastr.min.js')}}"></script>
 <script>
     $(document).ready(function() {
-        $('.ajout_el').on('click', function(e) {
-            e.preventDefault();
         
-        $('#adr').val('  الحامة');
-        $('#mere').val('--------');
-        });
         $('.alert-confirm').on('click', function(e) {
             e.preventDefault();
             var form = $(this).closest("form");
@@ -407,7 +324,7 @@
                 form.submit();
                 swal(
                     'Supprimée!',
-                    'L eleve a bien été supprimée.',
+                    'L enseignant a bien été supprimée.',
                     'success'
                 )
             }, function(dismiss) {
@@ -433,21 +350,13 @@
 
             // var url = "{{URL::to('enseignants')}}";
 
-            $.get("eleves/" + id + "/edit", function(data) {
+            $.get("users/" + id + "/edit", function(data) {
                 console.log(data.data);
-                $('#CIN').val(data.data['CIN']);
-                $('#IdentifiantUnique').val(data.data['IdentifiantUnique']);
-                $('#NomPrenom').val(data.data['NomPrenom']);
-                $('#DateNaissance').val(data.data['DateNaissance']);
-                $('#Adresse').val(data.data['Adresse']);
-                $('#NomPere').val(data.data['NomPere']);
-                $('#NomMere').val(data.data['NomMere']);
-                $('#GSMPere').val(data.data['GSMPere']);
-                $('#Classe_id').val(data.data['Classe_id']);
-                $('#Ideleve').val(data.data['id']);
-
-
-
+                // console.log(data.myclasses);
+                $('#name').val(data.data['name']);
+                $('#email').val(data.data['email']);
+                $('#role').val(data.data['role']);
+               
             });
 
 
@@ -456,43 +365,47 @@
         });
         $('.updatebtn').on('click', function(e) {
             e.preventDefault();
-            var identite = $('#CIN').val();
-            var IdentifiantUnique = $('#IdentifiantUnique').val();
-            var NomPrenom = $('#NomPrenom').val();
-            var DateNaissance = $('#DateNaissance').val();
-            var Adresse = $('#Adresse').val();
-            var NomPere = $('#NomPere').val();
-            var NomMere = $('#NomMere').val();
-            var GSMPere = $('#GSMPere').val();
-            var Classe_id = $('#Classe_id').val();
-            var id = $('#Ideleve').val();
+            var name = $('#name').val();
+            var email = $('#email').val();
+            var role = $('#role').val();
+            
+            var id = $('#Iduser').val();
+           
+            
 
             $.ajax({
                 method: "PUT",
-                url: "eleves/" + id,
+                url: "enseignants/" + id,
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 data: {
                     id: id,
-                    CIN: identite,
-                    IdentifiantUnique: IdentifiantUnique,
-                    NomPrenom: NomPrenom,
-                    Adresse: Adresse,
-                    DateNaissance: DateNaissance,
-                    NomPere: NomPere,
-                    NomMere: NomMere,
-                    GSMPere: GSMPere,
-                    Classe_id: Classe_id,
+                    name: name,
+                    email: email,
+                    role:role,
+                   
 
                 },
                 success: function(data) {
                     $('.modal').modal('hide');
                     // alert('update done')
 
+                },error:function(data){
+                    // console.log(data)
                 }
             });
         });
+        // var msg = "{{Session::get('success')}}";
+        var exist = "{{Session::has('success')}}";
+        if (exist) {
+            alert(msg);
+            toastr.success("toastr is a Javascript library for non-blocking notifications. jQuery is required!", "Fast Duration", {
+                showDuration: 500
+            })
+        }
+
+
     });
 </script>
 @endsection
