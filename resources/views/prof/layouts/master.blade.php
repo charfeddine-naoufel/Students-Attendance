@@ -11,17 +11,17 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500&family=Cairo:wght@400;500&family=Noto+Naskh+Arabic:wght@600&display=swap" rel="stylesheet">
 
-    <!-- <link id="gull-theme" rel="stylesheet" href="{{asset('assets/fonts/fontawesome-free-5.12.1-web/css/all.min.css')}}"> -->
-    <!-- <link id="gull-theme" rel="stylesheet" href="{{asset('assets/styles/css/themes/lite-purple.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/styles/vendor/perfect-scrollbar.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/styles/vendor/sweetalert2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/styles/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/styles/vendor/metisMenu.min.css')}}"> -->
+    <link id="gull-theme" rel="stylesheet" href="{{asset('assets/fonts/fontawesome-free-5.12.1-web/css/all.min.css')}}">
+    <link id="gull-theme" rel="stylesheet" href="{{asset('assets/styles/css/themes/lite-purple.min.css')}}"> 
+    <!-- <link rel="stylesheet" href="{{asset('assets/styles/vendor/perfect-scrollbar.css')}}"> -->
+    <!-- <link rel="stylesheet" href="{{asset('assets/styles/vendor/sweetalert2.min.css')}}"> -->
+    <!-- <link rel="stylesheet" href="{{asset('assets/styles/css/select2.min.css')}}"> -->
+    <!-- <link rel="stylesheet" href="{{asset('assets/styles/vendor/metisMenu.min.css')}}">  -->
 
-    <link id="gull-theme" rel="stylesheet" href="http://gull-html-laravel.ui-lib.com/assets/styles/css/themes/lite-purple.min.css">
-    <link rel="stylesheet" href="http://gull-html-laravel.ui-lib.com/assets/styles/vendor/perfect-scrollbar.css">
-    <link rel="stylesheet" href="http://gull-html-laravel.ui-lib.com/assets/fonts/fontawesome-free-5.10.1-web/css/all.css">
-    <link rel="stylesheet" href="http://gull-html-laravel.ui-lib.com/assets/styles/vendor/metisMenu.min.css">
+    <!-- <link  rel="stylesheet" href="https://gull-html-laravel.ui-lib.com/assets/styles/css/themes/lite-purple.min.css"> -->
+    <link rel="stylesheet" href="https://gull-html-laravel.ui-lib.com/assets/styles/vendor/perfect-scrollbar.css">
+    <!-- <link rel="stylesheet" href="https://gull-html-laravel.ui-lib.com/assets/fonts/fontawesome-free-5.10.1-web/css/all.css"> -->
+    <link rel="stylesheet" href="https://gull-html-laravel.ui-lib.com/assets/styles/vendor/metisMenu.min.css">
     @yield('customstyle')
 
 </head>
