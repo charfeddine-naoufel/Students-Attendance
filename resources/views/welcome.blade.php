@@ -650,7 +650,7 @@ section {
                 </div>
                 <div class="col-md-4">
                     <div class="selling-btn">
-                        <a class="btn btn-raised btn-raised-primary btn-xl rounded" href="">Contact Naoufel</a>
+                        <a class="btn btn-raised btn-raised-primary btn-xl rounded" href="">Contact Me</a>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -663,7 +663,7 @@ section {
             </div>
         </div>
         <div class="footer-bootom">
-            <p>© 2019 Gull, By Team Ui Lib</p>
+            <p>© 2023 LS Med Ali ElHamma, By Na.Ch</p>
         </div>
     </section>
 

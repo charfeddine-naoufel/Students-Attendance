@@ -94,25 +94,25 @@
         </div>
 
         <div class="separator-breadcrumb border-top"></div>
-        <div class="col-md-12">
-                    <div class="card mb-3">
-                        <div class="card-body green-100">
-                        <h3 class="card-title mb-3 heading text-primary text-center"> Classe: {{$classe->libeclassar }}</h3>
-
-                        </div>
-                    </div>
-                </div>
+        <div class="card bg-dark text-white mt-3 text-center" >
+            <div class="card-header">Classe:</div>
+            <div class="card-body">
+                <h3 class=" text-white display-3">{{$classe->libeclassar }}</h3>
+                <!-- <p class="card-text">This is the text content within the card.</p> -->
+            </div>
+        </div>
+        
 
         <div class="row mb-4">
 
 
-        <div class="col-md-6 mb-3">
-    <div class="card text-left">
+            <div class="col-md-6 mb-3">
+                <div class="card text-left">
 
-        <div class="card-body">
-            <h4 class="card-title mb-3"> Liste des élèves</h4>
-            
-            <div class="table-responsive">
+                    <div class="card-body">
+                        <h4 class="card-title mb-3"> Liste des élèves</h4>
+
+                        <div class="table-responsive">
                             <table class="table table-sm table-striped">
                                 <thead class="thead-primary text-white teal-700 ">
 
@@ -126,7 +126,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+
                                     @foreach($eleves as $el)
                                     <tr>
                                         <th scope="row">{{$loop->iteration }}</th>
@@ -135,7 +135,7 @@
                                         <td><strong>{{$el->DateNaissance}}</strong></td>
 
 
-                                        
+
                                     </tr>
                                     @endforeach
 
@@ -145,18 +145,18 @@
                         </div>
 
 
-        </div>
-    </div>
-</div>
-<!-- end of col-->
+                    </div>
+                </div>
+            </div>
+            <!-- end of col-->
 
-<div class="col-md-6 mb-3">
-    <div class="card text-left">
+            <div class="col-md-6 mb-3">
+                <div class="card text-left">
 
-        <div class="card-body">
-            <h4 class="card-title mb-3"> Liste des enseignants</h4>
-            
-            <div class="table-responsive">
+                    <div class="card-body">
+                        <h4 class="card-title mb-3"> Liste des enseignants</h4>
+
+                        <div class="table-responsive">
                             <table class="table table-sm table-striped">
                                 <thead class="thead-primary text-white teal-700">
 
@@ -170,7 +170,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+
                                     @foreach($profs as $prof)
                                     <tr>
                                         <th scope="row">{{$loop->iteration }}</th>
@@ -179,7 +179,7 @@
                                         <td><strong>{{$matieres[$prof->Matiere_id - 1]->NomMatiere}}</strong></td>
 
 
-                                        
+
                                     </tr>
                                     @endforeach
 
@@ -189,16 +189,16 @@
                         </div>
 
 
+                    </div>
+                </div>
+            </div>
+            <!-- end of col-->
+
         </div>
-    </div>
-</div>
-<!-- end of col-->
-
-</div>
-        
 
 
-       
+
+
 
 
         <!-- Footer Start -->
