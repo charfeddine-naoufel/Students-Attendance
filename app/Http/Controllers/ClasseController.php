@@ -66,7 +66,7 @@ class ClasseController extends Controller
     public function show($IdClasse)
     {
         // dd($IdClasse);
-        $eleves=Eleve::where('Classe_id',$IdClasse)->get();
+        $eleves=Eleve::where('Classe_id',$IdClasse)->orderBy('NomPrenom')->get();
         $classe=Classe::where('IdClasse',$IdClasse)->first();
         $profs = DB::table('enseignants')->select('enseignants.*')
         ->join('classe_enseignant', 'enseignants.id', '=', 'classe_enseignant.enseignant_id')

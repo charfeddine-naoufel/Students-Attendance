@@ -72,7 +72,11 @@ $(document).ready(function () {
 
     // scroll horizontal 
     $('#scroll_horizontal_table').DataTable({
-        "scrollX": true
+        "scrollX": true,
+        "paging": false,
+        "order": [
+            [5, "asc"]
+        ]
     });
 
     // scroll vertical dynamic height  

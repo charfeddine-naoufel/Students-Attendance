@@ -109,7 +109,7 @@ class EleveController extends Controller
         $eleve=Eleve::find($id)->first();
         $request->validate([
             'CIN' => 'nullable',
-            'IdentifiantUnique' => 'required',
+            'IdentifiantUnique' => 'required|unique:eleves,IdentifiantUnique',
             'NomPrenom' => 'required',
             'DateNaissance' => 'nullable',
             'Adresse' => 'nullable',

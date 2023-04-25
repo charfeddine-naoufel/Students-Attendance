@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title','Enseignants')
+@section('title','Elèves')
 @section('content')
 <div class="app-admin-wrap layout-sidebar-large clearfix">
     <div class="main-header">
@@ -88,7 +88,7 @@
         <div class="breadcrumb">
             <h1 class="mr-2">Dashboard</h1>
             <ul>
-                <li><a href="">Enseignants</a></li>
+                <li><a href="">Elèves</a></li>
                 <!-- <li>Version 1</li> -->
             </ul>
         </div>
@@ -115,7 +115,7 @@
 
                         </p>
                         <div class="table-responsive">
-                            <table class="table table-sm table-striped">
+                            <table id="scroll_horizontal_table" class="table table-sm table-striped " style="width:100%">
                                 <thead class="thead-dark">
 
                                     <tr>
@@ -165,7 +165,7 @@
                                         </td>
 
 
-                                        <td class="d-flex">
+                                        <td class="d-flex justify-content-around">
                                             <button class="btn text-success bg-transparent btn-icon  mr-2 editbtn" data-id="{{$eleve->id}}" data-toggle="modal" data-target="#editModalContent"><i class="nav-icon i-Pen-5 font-weight-bold"></i></button>
 
                                             <!-- <a href="#" class="text-success mr-2">
@@ -177,7 +177,7 @@
                                                 <!-- <a  class="text-danger mr-2" type="submit">
                                                     <i class="nav-icon i-Close-Window font-weight-bold"></i>
                                                 </a> -->
-                                                <button id="alert-confirm" class="btn text-danger  btn-icon  mr-2 "><i class="nav-icon i-Close-Window font-weight-bold"></i></i></button>
+                                                <button  class="btn text-danger bg-transparent btn-icon  mr-2 alert-confirm "><i class="nav-icon i-Close-Window font-weight-bold"></i></i></button>
 
                                             </form>
 
@@ -388,7 +388,7 @@
         $('#adr').val('  الحامة');
         $('#mere').val('--------');
         });
-        $('#alert-confirm').on('click', function(e) {
+        $('.alert-confirm').on('click', function(e) {
             e.preventDefault();
             var form = $(this).closest("form");
             swal({
@@ -495,4 +495,6 @@
         });
     });
 </script>
+<script src="{{asset('assets/js/vendor/datatables.min.js')}}"></script>
+<script src="{{asset('assets/js/datatables.script.js')}}"></script>
 @endsection

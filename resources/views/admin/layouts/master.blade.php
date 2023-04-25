@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{asset('assets/styles/vendor/perfect-scrollbar.css')}}">
     <link rel="stylesheet" href="{{asset('assets/styles/vendor/sweetalert2.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/styles/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/styles/vendor/datatables.min.css')}}">
     <!-- toastr css -->
     <link rel="stylesheet" href="{{asset('assets/styles/vendor/toastr.css')}}">
 
