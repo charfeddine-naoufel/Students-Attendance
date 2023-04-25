@@ -177,7 +177,7 @@
                                                 <!-- <a  class="text-danger mr-2" type="submit">
                                                     <i class="nav-icon i-Close-Window font-weight-bold"></i>
                                                 </a> -->
-                                                <button class="btn text-danger  btn-icon  mr-2 alert-confirm"><i class="nav-icon i-Close-Window font-weight-bold"></i></i></button>
+                                                <button id="alert-confirm" class="btn text-danger  btn-icon  mr-2 "><i class="nav-icon i-Close-Window font-weight-bold"></i></i></button>
 
                                             </form>
 
@@ -388,7 +388,7 @@
         $('#adr').val('  الحامة');
         $('#mere').val('--------');
         });
-        $('.alert-confirm').on('click', function(e) {
+        $('#alert-confirm').on('click', function(e) {
             e.preventDefault();
             var form = $(this).closest("form");
             swal({

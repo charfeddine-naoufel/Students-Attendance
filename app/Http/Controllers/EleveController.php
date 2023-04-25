@@ -104,8 +104,9 @@ class EleveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, eleve $eleve)
+    public function update(Request $request, $id)
     {
+        $eleve=Eleve::find($id)->first();
         $request->validate([
             'CIN' => 'nullable',
             'IdentifiantUnique' => 'required',
@@ -118,15 +119,16 @@ class EleveController extends Controller
             'Classe_id'=>'required'
         ]);
     
+        // $eleve->update($request->all());
         $eleve->update($request->all());
-        return response()->json([
-            'success' => true,
+        // return response()->json([
+        //     'success' => true,
            
            
-               ]); 
+        //        ]); 
      
-        // return redirect()->route('eleves.index')
-        //                 ->with('success','Matière mise à jour  avec succés.');
+        return redirect()->route('eleves.index')
+                        ->with('success','Matière mise à jour  avec succés.');
     }
 
     /**
@@ -135,9 +137,12 @@ class EleveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(eleve $eleve)
+    public function destroy($id)
     {
-        $eleve->delete();
+        
+        Eleve::find($id)->delete();
+     
+        // return response()->json(['success'=>'Eleve supprimée avec succés.']);
     
         return redirect()->route('eleves.index')
                         ->with('success','Eleve supprimée avec succés');
