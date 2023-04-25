@@ -11,17 +11,15 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500&family=Cairo:wght@400;500&family=Noto+Naskh+Arabic:wght@600&display=swap" rel="stylesheet">
 
-    <link id="gull-theme" rel="stylesheet" href="{{asset('assets/fonts/fontawesome-free-5.12.1-web/css/all.min.css')}}">
-    <link id="gull-theme" rel="stylesheet" href="{{asset('assets/styles/css/themes/lite-purple.min.css')}}"> 
-    <!-- <link rel="stylesheet" href="{{asset('assets/styles/vendor/perfect-scrollbar.css')}}"> -->
-    <!-- <link rel="stylesheet" href="{{asset('assets/styles/vendor/sweetalert2.min.css')}}"> -->
-    <!-- <link rel="stylesheet" href="{{asset('assets/styles/css/select2.min.css')}}"> -->
-    <!-- <link rel="stylesheet" href="{{asset('assets/styles/vendor/metisMenu.min.css')}}">  -->
+    <link  rel="stylesheet" href="{{asset('assets/fonts/fontawesome-free-5.12.1-web/css/all.css')}}">
+    <!-- <link  rel="stylesheet" href="http://gull-html-laravel.ui-lib.com/assets/styles/css/themes/lite-purple.min.css"> -->
 
-    <!-- <link  rel="stylesheet" href="https://gull-html-laravel.ui-lib.com/assets/styles/css/themes/lite-purple.min.css"> -->
-    <link rel="stylesheet" href="https://gull-html-laravel.ui-lib.com/assets/styles/vendor/perfect-scrollbar.css">
-    <!-- <link rel="stylesheet" href="https://gull-html-laravel.ui-lib.com/assets/fonts/fontawesome-free-5.10.1-web/css/all.css"> -->
-    <link rel="stylesheet" href="https://gull-html-laravel.ui-lib.com/assets/styles/vendor/metisMenu.min.css">
+    <link  rel="stylesheet" href="{{asset('assets/styles/css/themes/lite-purple.min.css')}}"> 
+    <link rel="stylesheet" href="{{asset('assets/styles/vendor/perfect-scrollbar.css')}}"> 
+    <link rel="stylesheet" href="{{asset('assets/styles/vendor/sweetalert2.min.css')}}">
+     <link rel="stylesheet" href="{{asset('assets/styles/css/select2.min.css')}}"> 
+    <link rel="stylesheet" href="{{asset('assets/styles/vendor/metisMenu.min.css')}}"> 
+
     @yield('customstyle')
 
 </head>
@@ -121,7 +119,7 @@
             <!-- side-nav-close -->
         </div>
         <!-- end sidebar -->
-        <div class="switch-overlay"></div>
+        <!-- <div class="switch-overlay"></div> -->
         <div class="main-content-wrap  mobile-menu-content bg-off-white m-0">
             <!-- header start -->
             <header class=" main-header bg-white d-flex justify-content-between p-2">
@@ -237,8 +235,8 @@
 
     <script src="{{asset('assets/js/common-bundle-script.js')}}"></script>
 
-    <script src="{{asset('assets/js/vendor/echarts.scripts.js')}}"></script>
-    <!-- ph<script src="{{asset('assets/js/es5/echart.options.js')}}"></script> -->
+    <script src="{{asset('assets/js/vendor/echarts.min.js')}}"></script>
+    ph<script src="{{asset('assets/js/es5/echart.options.js')}}"></script>
     <script src="{{asset('assets/js/es5/dashboard.v1.script.js')}}"></script>
 
 
@@ -251,7 +249,8 @@
 
 
     <script src="{{asset('assets/js/tooltip.script.js')}}"></script>
-    <script src="{{asset('assets/js/es5/script_2.js')}}"></script>
+    <!-- <script src="{{asset('assets/js/script_2.js')}}"></script> -->
+    <script src="http://gull-html-laravel.ui-lib.com/assets/js/es5/script_2.js"></script>
     <script src="{{asset('assets/js/vendor/feather.min.js')}}"></script>
     <script src="{{asset('assets/js/vendor/metisMenu.min.js')}}"></script>
     <script src="{{asset('assets/js/layout-sidebar-vertical.js')}}"></script>
@@ -261,7 +260,8 @@
 
 
     <script src="{{asset('assets/js/customizer.script.js')}}"></script>
-    <script type="text/javascript" src="addon/fonction/fonction.js"></script>
+    <!-- <script src="{{asset('assets/fonts/fontawesome-free-5.12.1-web/js/all.js')}}"></script> -->
+    <!-- <script type="text/javascript" src="addon/fonction/fonction.js"></script> -->
 
     @yield('scripts')
 
