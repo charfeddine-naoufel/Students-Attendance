@@ -95,16 +95,19 @@
                                         </div>
                                     </td>
 
-                                    <td>
+                                    <td class="d-flex justify-content-around " >
                                         <a href=""><i class="i-Pen-5 text-19 text-success font-weight-700 editbtn" data-id="{{$absence->id}} " data-toggle="modal" data-target=".bd-example-modal-xl"></i></a>
 
-                                        <a href=""><i class="i-Close-Window text-19 text-danger font-weight-700"></i></a>
-                                        <!-- <button type="button" class="btn btn-success ">
-                                <i class="nav-icon i-Pen-2 "></i>
-                            </button> -->
-                                        <!-- <button type="button" class="btn btn-danger ">
-                                <i class="nav-icon i-Close-Window "></i>
-                            </button> -->
+                                        <!-- <a href="" class="alert-confirm"><i class="i-Close-Window text-19 text-danger font-weight-700"></i></a> -->
+                                        <form action="{{ route('seance.destroy', $absence->id)}}" method="post" class="inline-block">
+                                                @csrf
+                                                @method('DELETE')
+                                                <!-- <a  class="text-danger mr-2" type="submit">
+                                                    <i class="nav-icon i-Close-Window font-weight-bold"></i>
+                                                </a> -->
+                                                <button  class="btn text-danger bg-transparent btn-icon  mr-2 alert-confirm "><i class="nav-icon i-Close-Window font-weight-bold"></i></i></button>
+
+                                            </form>
                                     </td>
                                 </tr>
                                 @empty
@@ -268,6 +271,41 @@
 @section('scripts')
 <script>
     $(document).ready(function() {
+        // delete Btn
+        $('.alert-confirm').on('click', function(e) {
+            e.preventDefault();
+            var form = $(this).closest("form");
+            swal({
+                title: 'Êtes vous sûr?',
+                text: "Cet action est irréversible!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#0CC27E',
+                cancelButtonColor: '#FF586B',
+                confirmButtonText: 'Oui, Supprimer!',
+                cancelButtonText: 'Non, Annuler!',
+                confirmButtonClass: 'btn btn-success mr-5',
+                cancelButtonClass: 'btn btn-danger',
+                buttonsStyling: false
+            }).then(function() {
+                form.submit();
+                swal(
+                    'Supprimée!!',
+                    'Absence supprimée avec success !!',
+                    'success'
+                )
+            }, function(dismiss) {
+                // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
+                if (dismiss === 'cancel') {
+                    swal(
+                        'Annulée',
+                        'La supression est annulée !! :)',
+                        'error'
+                    )
+                }
+            })
+        });
+        // edit Btn
         $(".editbtn").click(function(event) {
             event.preventDefault();
             var id = $(this).data("id");

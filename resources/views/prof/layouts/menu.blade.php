@@ -13,7 +13,7 @@
         <li class="nav-item " data-item="forms">
             <a class="nav-item-hold" href="#">
                 <i class="nav-icon i-File-Clipboard-File--Text"></i>
-                <span class="nav-text">Forms</span>
+                <span class="nav-text">Classes</span>
             </a>
             <div class="triangle"></div>
         </li>
@@ -70,7 +70,7 @@
         </ul>
     </div>
 
-    <div class="submenu-area" data-parent="apps" style="display: none;">
+    <div class="submenu-area" data-parent="apps" >
             <header>
                 <h6>Apps</h6>
                 <p>Lorem ipsum dolor sit.</p>

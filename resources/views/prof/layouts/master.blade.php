@@ -56,6 +56,7 @@
 
             </div>
             <!-- user -->
+            <div class="separator-breadcrumb border-top"></div>
             <div class="scroll-nav" data-perfect-scrollbar data-suppress-scroll-x="true">
 
                 <!-- user close -->
@@ -108,7 +109,28 @@
 
                         </ul>
                         </li>
+                        <li class="Ul_li--hover">
+                    <a class="has-arrow">
+                        <i class="i-Double-Tap text-20 mr-2 text-muted"></i>
+                        <span class="item-name  text-muted">Outils</span>
+                    </a>
+                    <ul class="mm-collapse">
+                        <li class="item-name">
+                            <a href="#">
+                                <i class="nav-icon i-Calendar"></i>
+                                <span class="item-name">Calendrier Dev</span>
+                            </a>
+                        </li>
+                        <li class="item-name">
+                            <a href="#">
+                                <i class="nav-icon i-Email"></i>
+                                <span class="item-name">SMS Parent</span>
+                            </a>
+                        </li>
+                        
 
+                    </ul>
+                </li>
 
 
                         </ul>
@@ -260,6 +282,8 @@
 
 
     <script src="{{asset('assets/js/customizer.script.js')}}"></script>
+    <script src="{{asset('assets/js/vendor/sweetalert2.min.js')}}"></script>
+    <script src="{{asset('assets/js/sweetalert.script.js')}}"></script>
     <!-- <script src="{{asset('assets/fonts/fontawesome-free-5.12.1-web/js/all.js')}}"></script> -->
     <!-- <script type="text/javascript" src="addon/fonction/fonction.js"></script> -->
 

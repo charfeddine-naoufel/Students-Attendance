@@ -122,6 +122,10 @@ class SeanceController extends Controller
      */
     public function destroy(Seance $seance)
     {
-        //
+        $seance->delete();
+     
+    
+        return redirect()->route('prof.home')
+                        ->with('success','Seance supprimée avec succés');
     }
 }
