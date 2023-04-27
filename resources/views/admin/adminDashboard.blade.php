@@ -192,7 +192,7 @@
                                                 @forelse ($absence->absents as $absent)
 
                                                 <!-- <li class="list-group-item p-1 w-80" style="font-family: 'Cairo', sans-serif;font-size: 10px;">{{$abs[$absent]}}</li> -->
-                                                <li class="list-group-item p-1 w-80" style="font-family: 'Cairo', sans-serif;font-size: 10px;">{{$abs[$absent]}}</li>
+                                                <li class="list-group-item p-1 w-80" style="font-family: 'Cairo', sans-serif;font-size: 10px;"></li>
 
                                                     @empty
 
