@@ -20,13 +20,13 @@ class EnseignantController extends Controller
     public function index()
     {
         // get all the enseignants
-        $enseignants = Enseignant::orderBy('id', 'asc')->paginate(30);
+        $enseignants = Enseignant::orderBy('id', 'asc')->get();
         $matieres = Matiere::all();
         $classes = Classe::all();
         $users = User::all();
         
     
-        return view('admin.prof.index',['enseignants'=>$enseignants,'matieres'=>$matieres ,'classes'=>$classes,'users'=>$users])->with('i', (request()->input('page', 1) - 1) * 20);
+        return view('admin.prof.index',['enseignants'=>$enseignants,'matieres'=>$matieres ,'classes'=>$classes,'users'=>$users]);
     }
 
     //mes classes

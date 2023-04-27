@@ -192,7 +192,7 @@
 
 
                     </div>
-                    {!! $eleves->links() !!}
+                    <!-- here -->
                 </div>
             </div>
         </div>

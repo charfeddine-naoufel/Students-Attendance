@@ -73,7 +73,7 @@ $(document).ready(function () {
     // scroll horizontal 
     $('#scroll_horizontal_table').DataTable({
         "scrollX": true,
-        "paging": false,
+        "paging": true,
         "order": [
             [5, "asc"]
         ]

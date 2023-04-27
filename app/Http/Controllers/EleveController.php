@@ -19,8 +19,7 @@ class EleveController extends Controller
         // $eleves = Eleve::latest()->paginate(10);
         $eleves = Eleve::select('eleves.*','classes.libeclassar')
         ->join('classes', 'eleves.Classe_id', '=', 'classes.IdClasse')
-        ->orderBy('classes.IdClasse')
-        ->paginate(10);
+        ->orderBy('classes.IdClasse')->get();
         $classes=Classe::all();
         // $eleves->setCollection($eleves->groupBy('classe_id'));
         // $eleves = Eleve::latest()->groupBy('classe_id')->paginate(20);
@@ -28,7 +27,7 @@ class EleveController extends Controller
         // $classes = Classe::all();
         
     
-        return view('admin.eleve.index',['eleves'=>$eleves,'classes'=>$classes])->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('admin.eleve.index',['eleves'=>$eleves,'classes'=>$classes]);
     }
 
     /**

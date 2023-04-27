@@ -115,7 +115,7 @@
 
                         </p>
                         <div class="table-responsive">
-                            <table class="table ">
+                            <table id="scroll_horizontal_table" class="table table-sm table-striped " style="width:100%">
                                 <thead class="thead-dark">
 
                                     <tr>
@@ -192,7 +192,7 @@
 
 
                     </div>
-                    {!! $enseignants->links() !!}
+                    <!-- ici     -->
                 </div>
             </div>
         </div>
@@ -503,4 +503,6 @@
 
     });
 </script>
+<script src="{{asset('assets/js/vendor/datatables.min.js')}}"></script>
+<script src="{{asset('assets/js/datatables.script.js')}}"></script>
 @endsection
