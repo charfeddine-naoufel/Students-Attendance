@@ -99,7 +99,7 @@
                                         <a href=""><i class="i-Pen-5 text-19 text-success font-weight-700 editbtn" data-id="{{$absence->id}} " data-toggle="modal" data-target=".bd-example-modal-xl"></i></a>
 
                                         <!-- <a href="" class="alert-confirm"><i class="i-Close-Window text-19 text-danger font-weight-700"></i></a> -->
-                                        <form action="{{ route('seance.destroy', $absence->id)}}" method="post" class="inline-block">
+                                        <form action="{{ route('seance.destroy', $absence->id)}}" method="post" class=" inline-block" id="form-abs">
                                                 @csrf
                                                 @method('DELETE')
                                                 <!-- <a  class="text-danger mr-2" type="submit">
@@ -274,7 +274,7 @@
         // delete Btn
         $('.alert-confirm').on('click', function(e) {
             e.preventDefault();
-            var form = $(this).closest("form");
+            var form = $(this).closest("#form-abs");
             swal({
                 title: 'Êtes vous sûr?',
                 text: "Cet action est irréversible!",

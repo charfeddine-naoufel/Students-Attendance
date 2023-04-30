@@ -141,13 +141,10 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="exampleFormControlSelect1" class="ul-form__label">Matiere</label>
-                                        <select class="form-control" id="Matiere_id" name="matiere_id">
-                                            <option value="0">Choisir ...</option>
-                                            @foreach($matieres as $matiere)
-                                            <option value="{{$matiere->id}}">{{$matiere->NomMatiere}}</option>
-                                            @endforeach
+                                        <input type="text" class="form-control" id="tttt" readonly value="{{$matiere->NomMatiere}}" >
+                                        <input type="hidden" class="form-control" id="tttt" readonly value="{{$matiere->id}}" name="matiere_id">
 
-                                        </select>
+                                      
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="exampleFormControlTextarea1">Commentaires</label>

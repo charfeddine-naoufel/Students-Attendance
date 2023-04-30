@@ -27,9 +27,10 @@ class SeanceController extends Controller
         $classe=Classe::where('IdClasse',$id)->first();
     //   dd($classe);
       
-        $matieres=Matiere::all();
+    $mat= Enseignant::where('user_id',Auth::user()->id)->first();   
+    $matiere=Matiere::where('id',$mat->id)->first();
         // dd($classe->eleves);
-        return view("prof.absence.seance",compact('classe','matieres'));
+        return view("prof.absence.seance",compact('classe','matiere'));
     }
     // enregistrer présence
     public function store_absence(Request $request)
@@ -120,9 +121,9 @@ class SeanceController extends Controller
      * @param  \App\Models\Seance  $seance
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Seance $seance)
+    public function destroy( $id)
     {
-        $seance->delete();
+        Seance::whereId($id)->delete();
      
     
         return redirect()->route('prof.home')
