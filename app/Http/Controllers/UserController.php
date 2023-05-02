@@ -82,11 +82,8 @@ class UserController extends Controller
       */
      public function edit($id)
      {
-         $user = user::find($id); 
-                 return response()->json([
-                                'success' => true,
-                                 'data' => $user ,
-                                   ]);
+        $user=User::whereId($id)->first();
+        return view('prof.profile.editprofile',compact('user'));
      }
  
      /**
@@ -96,8 +93,9 @@ class UserController extends Controller
       * @param  int  $id
       * @return \Illuminate\Http\Response
       */
-     public function update(Request $request, user $user)
-     { 
+     public function update(Request $request, $id)
+     { $user=User::whereId($id)->first();
+        //  dd($user);
         $request->validate([
             'name' => 'required|unique:users,name',
             'email' => 'required|email|unique:users,email',
@@ -114,13 +112,12 @@ class UserController extends Controller
          $user->save();
  
          
-         return response()->json([
-             'success' => true,
+        //  return response()->json([
+        //      'success' => true,
             
-                ]); 
-      
-         // return redirect()->route('users.index')
-         //                 ->with('success','Matière mise à jour  avec succés.');
+        //         ]); 
+         return redirect()->route('prof.home')
+                         ->with('success','Profile mis à jour  avec succés.');
      }
  
      /**

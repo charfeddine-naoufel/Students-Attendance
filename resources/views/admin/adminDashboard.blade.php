@@ -116,7 +116,7 @@
                         <i class="i-File-Clipboard"></i>
                         <div class="content">
                             <p class="text-muted mt-2 mb-0">Classes</p>
-                            <p class="text-primary text-24 line-height-1 mb-2">21</p>
+                            <p class="text-primary text-24 line-height-1 mb-2">{{ count($cls)}}</p>
                         </div>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
                         <i class="i-Checkout-Basket"></i>
                         <div class="content">
                             <p class="text-muted mt-2 mb-0">prof</p>
-                            <p class="text-primary text-24 line-height-1 mb-2">40</p>
+                            <p class="text-primary text-24 line-height-1 mb-2">{{ count($profs)}}</p>
                         </div>
                     </div>
                 </div>
@@ -140,7 +140,7 @@
                         <i class="i-Money-2"></i>
                         <div class="content">
                             <p class="text-muted mt-2 mb-0">Matiers</p>
-                            <p class="text-primary text-24 line-height-1 mb-2">20</p>
+                            <p class="text-primary text-24 line-height-1 mb-2">{{ count($mats)}}</p>
                         </div>
                     </div>
                 </div>

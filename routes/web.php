@@ -46,6 +46,8 @@ Route::prefix('prof')->middleware(['auth','prof'])->group(function(){
         Route::get('/seances/{id}/edit',[SeanceController::class,'edit'])->name('seance.edit');
         Route::delete('/seances/{id}/destroy',[SeanceController::class,'destroy'])->name('seance.destroy');
         Route::get('/seances/{id}/update',[SeanceController::class,'update'])->name('seance.update');
+        Route::get('/users/{id}/edit',[UserController::class,'edit'])->name('user.edit');
+        Route::put('/users/{id}/update',[UserController::class,'update'])->name('user.update');
         Route::post('/seances/store_absence',[SeanceController::class,'store_absence'])->name('seance.store_absence');
         Route::get('/mesCLasses', [EnseignantController::class, 'mesclasses'])->name('prof.mesclasses');
 

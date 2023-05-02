@@ -326,7 +326,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Utilisateur</label>
-                                <select class="form-control user" id="user_id" name="User_id">
+                                <select class="form-control user" id="user_id1" name="User_id">
                                     <option value="0">Choisir ...</option>
                                     @foreach($users as $user)
                                     <option value="{{$user->id}}">{{$user->name}}</option>
@@ -428,7 +428,7 @@
                 $('#Grade').val(data.data['Grade']);
                 $('#Type').val(data.data['Type']);
                 $('#IdEnseignant').val(data.data['id']);
-                $('.user').val(data.data['User_id']).change();
+                $('#user_id1').val(data.data['User_id']).change();
                 $('.mat').val(data.data['Matiere_id']).change();
                 // $("#Matiere_id option[value=5]").attr('selected', 'selected');
                 var selectedValues =$.map(data.myclasses, function(obj) {
@@ -458,7 +458,7 @@
             var Grade = $('#Grade').val();
             var Type = $('#Type').val();
             var id = $('#IdEnseignant').val();
-            var User_id = $('.user').val();
+            var User_id = $('#user_id1').val();
             
             // var User_id ='3';
             var Matiere_id = $('.mat').val();

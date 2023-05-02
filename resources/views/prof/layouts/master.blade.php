@@ -194,7 +194,7 @@
                                 <div class="dropdown-header">
                                     <i class="i-Lock-User mr-1"></i> {{Auth::user()->name}}
                                 </div>
-                                <a class="dropdown-item">Profile</a>
+                                <a class="dropdown-item" href="{{ route('user.edit',Auth()->user()->id) }}">Profile</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
