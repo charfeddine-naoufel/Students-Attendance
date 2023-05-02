@@ -2,7 +2,7 @@
     <div class="sidebar-left open rtl-ps-none" data-perfect-scrollbar data-suppress-scroll-x="true">
         <ul class="navigation-left">
             <li class="nav-item" data-item="dashboard">
-                <a class="nav-item-hold" href="/home">
+                <a class="nav-item-hold" href="{{route('admin.home')}}">
                     <i class="nav-icon i-Bar-Chart"></i>
                     <span class="nav-text">Dashboard</span>
                 </a>
