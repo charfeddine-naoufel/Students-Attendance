@@ -52,7 +52,7 @@ class UserController extends Controller
              'role' => 'required',
             
          ]);
-        
+         $request['password']=bcrypt($request->password);
          User::create($request->all());
          
          
@@ -107,6 +107,7 @@ class UserController extends Controller
          
          $user->name=$request->name;
          $user->email=$request->email;
+         $user->password=bcrypt($request->password);
          $user->role=$request->role;
          
          $user->save();
