@@ -21,22 +21,22 @@ class SeanceController extends Controller
         //
     }
 
-   
+
     public function absence($id)
-    {     
-        $classe=Classe::where('IdClasse',$id)->first();
-    //   dd($classe);
-      
-    $mat= Enseignant::where('user_id',Auth::user()->id)->first();   
-    $matiere=Matiere::where('id',$mat->id)->first();
+    {
+        $classe = Classe::where('IdClasse', $id)->first();
+        //   dd($classe);
+
+        $ens = Enseignant::where('user_id', Auth::user()->id)->first();
+        $matiere = Matiere::where('id', $ens->Matiere_id)->first();
         // dd($classe->eleves);
-        return view("prof.absence.seance",compact('classe','matiere'));
+        return view("prof.absence.seance", compact('classe', 'matiere'));
     }
     // enregistrer présence
     public function store_absence(Request $request)
-    { 
+    {
         //  dd($request);
-        $prof=Enseignant::where('user_id',Auth::user()->id)->first();
+        $prof = Enseignant::where('user_id', Auth::user()->id)->first();
         $input = $request->all();
         $input['absents'] = $request->input('absents', []);
         $input['exclus'] = $request->input('exclus', []);
@@ -44,17 +44,15 @@ class SeanceController extends Controller
         // dd($input);
         Seance::create($input);
         return redirect()->route('prof.home')
-                        ->with('success','Absense enregistrée.');
-        
+            ->with('success', 'Absense enregistrée.');
     }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create( )
+    public function create()
     {
-     
     }
 
     /**
@@ -87,20 +85,20 @@ class SeanceController extends Controller
      */
     public function edit($id)
     {
-         $seance =Seance::where('id',$id)->first();
-         $classe=Classe::where('IdClasse',$seance->classe_IdClasse)->first();
-         $matiere=Matiere::where('id',$seance->matiere_id)->first();
-         $matieres=Matiere::all();
-         $eleves=$classe->eleves;
+        $seance = Seance::where('id', $id)->first();
+        $classe = Classe::where('IdClasse', $seance->classe_IdClasse)->first();
+        $matiere = Matiere::where('id', $seance->matiere_id)->first();
+        $matieres = Matiere::all();
+        $eleves = $classe->eleves;
         //  dd($classe);
-                return response()->json([
-                               'success' => true,
-                                'data' => $seance,
-                                'classe'=>$classe,
-                                'matieres'=>$matieres,
-                                'matiere'=>$matiere,
-                                'eleves'=>$eleves
-                                  ]);
+        return response()->json([
+            'success' => true,
+            'data' => $seance,
+            'classe' => $classe,
+            'matieres' => $matieres,
+            'matiere' => $matiere,
+            'eleves' => $eleves
+        ]);
     }
 
     /**
@@ -121,12 +119,12 @@ class SeanceController extends Controller
      * @param  \App\Models\Seance  $seance
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $id)
+    public function destroy($id)
     {
         Seance::whereId($id)->delete();
-     
-    
+
+
         return redirect()->route('prof.home')
-                        ->with('success','Seance supprimée avec succés');
+            ->with('success', 'Seance supprimée avec succés');
     }
 }
