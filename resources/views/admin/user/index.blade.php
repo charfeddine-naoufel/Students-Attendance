@@ -104,7 +104,7 @@
                         <div class="d-flex justify-content-between">
 
                             <h4 class="card-title mb-3"> Utilisateurs</h4>
-                            <button type="button" class="btn btn-primary btn-icon m-1" data-toggle="modal" data-target="#verifyModalContent">
+                            <button type="button" class="btn btn-primary btn-icon m-1" data-toggle="modal" data-target="#verifyModalContent_prof">
                                 <span class="ul-btn__icon"><i class="i-Add"></i></span>
                                 <span class="ul-btn__text">Ajouter</span>
                             </button>
@@ -183,7 +183,7 @@
 
 
         <!-- Verify Modal content -->
-        <div class="modal fade" id="verifyModalContent" tabindex="-1" role="dialog" aria-labelledby="verifyModalContent" aria-hidden="true">
+        <div class="modal fade" id="verifyModalContent_prof" tabindex="-1" role="dialog" aria-labelledby="verifyModalContent" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -215,7 +215,7 @@
                             
                             <div class="form-group">
                                 <label for="Grade" class="col-form-label">Role:</label>
-                                <input type="text" class="form-control" name="role">
+                                <input type="text" class="form-control" name="role" id="role">
                             </div>
                            
                             
@@ -304,7 +304,7 @@
 <script src="{{asset('assets/js/vendor/toastr.min.js')}}"></script>
 <script>
     $(document).ready(function() {
-        
+        $('#role').val('prof');
         $('.alert-confirm').on('click', function(e) {
             e.preventDefault();
             var form = $(this).closest("form");

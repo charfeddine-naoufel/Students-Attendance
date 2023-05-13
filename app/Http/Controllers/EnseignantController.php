@@ -66,12 +66,12 @@ class EnseignantController extends Controller
      */
     public function store(Request $request)
     {
-        
+        // dd($request->toArray());
         $request->validate([
             'CodeEnseignant' => 'required|numeric',
             'NomEnseignant' => 'required',
             'Matiere_id' => 'required',
-            'User_id' => 'required|unique:enseignants',
+            'User_id' => 'nullable',
             'Grade' => 'nullable',
             'Type' => 'nullable',
             'classes' => 'nullable',

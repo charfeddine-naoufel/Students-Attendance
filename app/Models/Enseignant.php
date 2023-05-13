@@ -12,6 +12,7 @@ class Enseignant extends Model
         'CodeEnseignant',
         'NomEnseignant',
         'Matiere_id',
+        'User_id',
         'Grade',
         'Type',
         
