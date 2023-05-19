@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -93,25 +95,26 @@ class UserController extends Controller
       * @param  int  $id
       * @return \Illuminate\Http\Response
       */
-     public function update(Request $request, $id)
+     public function update(UpdateUserRequest  $request, $id)
      { $user=User::whereId($id)->first();
-        //  dd($user);
-        $request->validate([
-            'name' => 'required|unique:users,name',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8',
-            'password_confirmation' => 'required|same:password',
-            'role' => 'required',
+          dd($request);
+        // $request->validate([
+        //     'name' => 'required|unique:users,name',
+        //     'email' => 'required|email|unique:users,email',
+        //     'password' => 'required|min:8',
+        //     'password_confirmation' => 'required|same:password',
+        //     'role' => 'required',
            
-        ]);
+        // ]);
          
          $user->name=$request->name;
          $user->email=$request->email;
-         $user->password=bcrypt($request->password);
+         $user->password=Hash::make($request->password);
+        //  $user->password=bcrypt($request->password);
          $user->role=$request->role;
          
+         dd($user);
          $user->save();
- 
          
         //  return response()->json([
         //      'success' => true,

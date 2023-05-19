@@ -104,7 +104,7 @@
                         <div class="d-flex justify-content-between">
 
                             <h4 class="card-title mb-3"> Enseignants</h4>
-                            <button type="button" class="btn btn-primary btn-icon m-1" data-toggle="modal" data-target="#verifyModalContent">
+                            <button type="button" class="btn btn-primary btn-icon m-1" data-toggle="modal" data-target="#verifyModalContentprof">
                                 <span class="ul-btn__icon"><i class="i-Add"></i></span>
                                 <span class="ul-btn__text">Ajouter</span>
                             </button>
@@ -199,11 +199,11 @@
 
 
         <!-- Verify Modal content -->
-        <div class="modal fade" id="verifyModalContent" tabindex="-1" role="dialog" aria-labelledby="verifyModalContent" aria-hidden="true">
+        <div class="modal fade" id="verifyModalContentprof" tabindex="-1" role="dialog" aria-labelledby="verifyModalContentprof" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="verifyModalContent_title">Nouveau Enseignant</h5>
+                        <h5 class="modal-title" id="verifyModalContentprof_title">Nouveau Enseignant</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -232,11 +232,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="Grade" class="col-form-label">Grade:</label>
-                                <input type="text" class="form-control" name="Grade">
+                                <input type="text" class="form-control" name="Grade" id="gr">
                             </div>
                             <div class="form-group">
                                 <label for="Type" class="col-form-label">Type:</label>
-                                <input type="text" class="form-control" name="Type">
+                                <input type="text" class="form-control" name="Type" id="ty">
                             </div>
                             <div class="form-group">
                                 <label for="classe" class="col-form-label">Classe:</label>
@@ -373,6 +373,9 @@
 <script src="{{asset('assets/js/vendor/toastr.min.js')}}"></script>
 <script>
     $(document).ready(function() {
+        $('#gr').val('0');
+        $('#ty').val('0');
+        // ....
         $('.classe').select2({placeholder: "Choisir...",
     allowClear: true});
         $('.alert-confirm').on('click', function(e) {
